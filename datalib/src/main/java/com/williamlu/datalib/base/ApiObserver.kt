@@ -1,6 +1,8 @@
-package com.williamlu.datalib
+package com.williamlu.datalib.base
 
 import com.google.gson.JsonSyntaxException
+import com.orhanobut.logger.Logger
+import com.williamlu.datalib.DataConstant
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import retrofit2.HttpException
@@ -64,7 +66,7 @@ abstract class ApiObserver<T> : Observer<T> {
             showMsg = DataConstant.ToastConstant.ERROR_SERVER
         }
         //ToastUtils.showToast(showMsg)
-        //MLog.e(e.toString() + "," + showMsg)
+        Logger.e(e.toString() + "," + showMsg)
 
         if (mDisposable != null && !mDisposable!!.isDisposed) {
             mDisposable!!.dispose()

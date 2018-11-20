@@ -39,6 +39,7 @@ dependencies {
     api rootProject.ext.dependencies["okhttp3"]
     api rootProject.ext.dependencies["okhttp3-logger"]
     api rootProject.ext.dependencies["okhttp-urlconnection"]
+    api rootProject.ext.dependencies["logger"]
 }
 
 repositories {

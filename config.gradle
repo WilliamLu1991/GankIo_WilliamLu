@@ -45,6 +45,7 @@ ext {
             "glide-compiler"            : "com.github.bumptech.glide:compiler:${version["glideSdkVersion"]}",
             "glide-loader-okhttp3"      : "com.github.bumptech.glide:okhttp3-integration:${version["glideSdkVersion"]}",
             "picasso"                   : "com.squareup.picasso:picasso:2.5.2",
+            "logger"                    : "com.orhanobut:logger:1.15",
 
             //view
             "autolayout"                : "com.zhy:autolayout:1.4.5",
