@@ -28,4 +28,5 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     api rootProject.ext.dependencies["rxjava2"]
     api rootProject.ext.dependencies["rxandroid2"]
+    api rootProject.ext.dependencies["logger"]
 }

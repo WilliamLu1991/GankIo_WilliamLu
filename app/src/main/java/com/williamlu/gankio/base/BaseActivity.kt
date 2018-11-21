@@ -1,6 +1,7 @@
 package com.williamlu.gankio.base
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -45,6 +46,7 @@ abstract class BaseActivity : AppCompatActivity() {
     /**
      * 检查权限 及申请
      */
+    @SuppressLint("CheckResult")
     private fun checkPermission(activity: Activity) {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.READ_PHONE_STATE,
