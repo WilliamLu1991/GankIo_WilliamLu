@@ -18,7 +18,7 @@ class DefaultTransformer<T> : ObservableTransformer<T, T> {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { t ->
-                    if ((t as BaseBean<T>).code !== 200) {
+                    if ((t as BaseBean<T>).code != 200) {
                         throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
                     }
                     t

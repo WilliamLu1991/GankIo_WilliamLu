@@ -4,7 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.FrameLayout
 import com.williamlu.datalib.api.DouBanMovieService
+import com.williamlu.datalib.base.ApiObserver
+import com.williamlu.datalib.bean.BaseBean
+import com.williamlu.datalib.bean.Movie
 import com.williamlu.gankio.base.BaseActivity
+import io.reactivex.internal.util.HalfSerializer.onNext
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -26,9 +30,11 @@ class MainActivity : BaseActivity() {
     override fun initView(savedInstanceState: Bundle?) {
         DouBanMovieService.getInstance()
                 .getMovieTop250(1, 20)
-                .subscribe {
+                .subscribe(object : ApiObserver<BaseBean<List<Movie>>>() {
+                    override fun onNext(t: BaseBean<List<Movie>>) {
 
-                }
+                    }
+                })
 
         setSupportActionBar(main_toolbar)
 
