@@ -9,7 +9,7 @@ import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.williamlu.widgetlib.R
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 

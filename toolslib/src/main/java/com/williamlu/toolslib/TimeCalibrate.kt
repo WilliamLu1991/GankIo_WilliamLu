@@ -3,7 +3,7 @@ package com.williamlu.toolslib
 import android.os.SystemClock
 import java.util.*
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 

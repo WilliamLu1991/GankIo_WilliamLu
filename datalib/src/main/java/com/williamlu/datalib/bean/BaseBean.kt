@@ -2,7 +2,7 @@ package com.williamlu.datalib.bean
 
 import java.io.Serializable
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 

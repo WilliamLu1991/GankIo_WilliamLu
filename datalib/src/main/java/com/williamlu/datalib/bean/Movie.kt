@@ -1,6 +1,6 @@
 package com.williamlu.datalib.bean
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 

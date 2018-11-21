@@ -1,6 +1,6 @@
 package com.williamlu.toolslib
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 生成随机数工具类

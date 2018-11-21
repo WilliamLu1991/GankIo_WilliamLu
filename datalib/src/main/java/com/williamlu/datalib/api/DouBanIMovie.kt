@@ -4,7 +4,7 @@ import android.graphics.Movie
 import com.williamlu.datalib.bean.BaseBean
 import io.reactivex.Observable
 
-/*
+/**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description: 
