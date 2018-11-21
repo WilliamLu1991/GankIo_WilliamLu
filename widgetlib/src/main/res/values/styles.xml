@@ -9,4 +9,5 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
+    <style name="DialogMaterial" parent="android:Theme.Holo.Dialog.NoActionBar"></style>
 </resources>

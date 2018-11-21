@@ -1,4 +1,4 @@
-package com.williamlu.gankio
+package com.williamlu.gankio.base
 
 import android.app.ActivityManager
 import android.content.Context
