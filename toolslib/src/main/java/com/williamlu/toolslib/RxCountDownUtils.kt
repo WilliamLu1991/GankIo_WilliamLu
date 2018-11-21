@@ -77,9 +77,11 @@ class RxCountDownUtils {
                             } else {
                                 mTextView!!.setBackgroundResource(endBgResId)
                             }
+                            stopCountdown()
                         }
 
                         override fun onError(e: Throwable) {
+                            stopCountdown()
                             ToastUtils.showToast(e.toString())
                         }
                     })
