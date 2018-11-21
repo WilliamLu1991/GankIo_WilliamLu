@@ -76,7 +76,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["eventbus"]
-    api rootProject.ext.dependencies["glide"]
     api rootProject.ext.dependencies["gson"]
     implementation project(':datalib')
 }
