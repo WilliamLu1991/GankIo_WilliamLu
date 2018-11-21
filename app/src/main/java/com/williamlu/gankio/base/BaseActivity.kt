@@ -21,9 +21,23 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseActivity : AppCompatActivity() {
 
+    /**
+     * 获取布局ID
+     */
+    protected abstract fun getContentViewLayoutID(): Int
+
+    /**
+     * 初始化布局以及View控件
+     */
+    protected abstract fun initView(savedInstanceState: Bundle?)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         EventBus.getDefault().register(this)
+        if (getContentViewLayoutID() != 0) {
+            setContentView(getContentViewLayoutID())
+            initView(savedInstanceState)
+        }
     }
 
     /**

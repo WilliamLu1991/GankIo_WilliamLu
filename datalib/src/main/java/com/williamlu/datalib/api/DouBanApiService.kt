@@ -11,22 +11,21 @@ import io.reactivex.schedulers.Schedulers
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class DouBanMovieService : BaseApiService(), DouBanIMovie {
 
     companion object {
         private var INSTANCE: DouBanMovieService? = null
 
-        val instance: DouBanMovieService
-            get() {
-                synchronized(DouBanMovieService::class.java) {
-                    if (INSTANCE == null) {
-                        INSTANCE = DouBanMovieService()
-                    }
+        fun getInstance(): DouBanMovieService {
+            synchronized(DouBanMovieService::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = DouBanMovieService()
                 }
-                return INSTANCE!!
             }
+            return INSTANCE!!
+        }
     }
 
 
