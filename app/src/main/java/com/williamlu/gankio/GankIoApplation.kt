@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.support.multidex.MultiDex
-import android.util.Log.isLoggable
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.williamlu.toolslib.GlobalCache
