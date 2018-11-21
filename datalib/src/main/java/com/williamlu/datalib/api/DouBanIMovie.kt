@@ -1,7 +1,7 @@
 package com.williamlu.datalib.api
 
-import android.graphics.Movie
 import com.williamlu.datalib.bean.BaseBean
+import com.williamlu.datalib.bean.Movie
 import io.reactivex.Observable
 
 /**

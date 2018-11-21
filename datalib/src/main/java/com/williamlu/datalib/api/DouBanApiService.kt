@@ -1,9 +1,9 @@
 package com.williamlu.datalib.api
 
-import android.graphics.Movie
 import com.williamlu.datalib.base.BaseApiService
 import com.williamlu.datalib.base.DefaultTransformer
 import com.williamlu.datalib.bean.BaseBean
+import com.williamlu.datalib.bean.Movie
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

@@ -1,4 +1,4 @@
-package com.williamlu.gankio.douban.bean
+package com.williamlu.datalib.bean
 
 /**
  * @Author: WilliamLu

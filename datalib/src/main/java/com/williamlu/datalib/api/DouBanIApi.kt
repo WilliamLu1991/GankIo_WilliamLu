@@ -1,8 +1,8 @@
 package com.williamlu.datalib.api
 
-import android.graphics.Movie
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.datalib.bean.BaseBeanN
+import com.williamlu.datalib.bean.Movie
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query
