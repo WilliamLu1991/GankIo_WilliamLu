@@ -1,7 +1,7 @@
-package com.williamlu.datalib.api
+package com.williamlu.gankio.home.model.api
 
 import com.williamlu.datalib.bean.BaseBean
-import com.williamlu.datalib.bean.Movie
+import com.williamlu.gankio.home.model.bean.Movie
 import io.reactivex.Observable
 
 /**

@@ -3,6 +3,7 @@ package com.williamlu.gankio.base
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.orhanobut.logger.Logger
@@ -19,7 +20,15 @@ import org.greenrobot.eventbus.ThreadMode
  * @Date: 2018/11/20
  * @Description:
  */
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
+
+    override fun showLoadingView() {
+
+    }
+
+    override fun dismissLoadingView() {
+
+    }
 
     /**
      * 获取布局ID
