@@ -3,7 +3,6 @@ package com.williamlu.gankio.base
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.orhanobut.logger.Logger
