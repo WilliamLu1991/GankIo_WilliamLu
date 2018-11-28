@@ -13,11 +13,10 @@ import com.williamlu.gankio.home.contract.MainContract
  */
 class MainPresenter(mView: MainContract.View) : MainContract.Presenter {
 
-    private val mView: MainContract.View
+    private val mView: MainContract.View = mView
 
     init {
-        this.mView = mView
-        this.mView.setMainPresenter(this)
+        mView.setMainPresenter(this)
     }
 
     override fun getData() {
