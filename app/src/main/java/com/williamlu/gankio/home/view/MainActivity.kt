@@ -7,6 +7,11 @@ import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
 
+/**
+ * @Author: WilliamLu
+ * @Date: 2018/11/20
+ * @Description:
+ */
 class MainActivity : BaseActivity(), MainContract.View {
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_main
