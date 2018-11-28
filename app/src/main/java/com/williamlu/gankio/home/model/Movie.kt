@@ -1,4 +1,4 @@
-package com.williamlu.gankio.home.model.bean
+package com.williamlu.gankio.home.model
 
 /**
  * @Author: WilliamLu

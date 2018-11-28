@@ -1,8 +1,8 @@
-package com.williamlu.gankio.base
+package com.williamlu.gankio.api
 
 import com.williamlu.datalib.RetrofitHelper
 import com.williamlu.gankio.AppConstant
-import com.williamlu.gankio.home.model.api.DouBanIApi
+import com.williamlu.gankio.api.douban.DouBanIApi
 
 /**
  * @Author: WilliamLu

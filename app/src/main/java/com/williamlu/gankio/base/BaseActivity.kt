@@ -35,6 +35,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     protected abstract fun getContentViewLayoutID(): Int
 
     /**
+     * 设置需要的presenter
+     */
+    abstract fun initPresenter()
+
+    /**
      * 初始化布局以及View控件
      */
     protected abstract fun initView(savedInstanceState: Bundle?)
@@ -44,6 +49,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID())
+            initPresenter()
             initView(savedInstanceState)
         }
     }

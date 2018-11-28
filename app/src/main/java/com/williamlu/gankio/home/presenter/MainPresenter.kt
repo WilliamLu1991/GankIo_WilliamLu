@@ -1,9 +1,9 @@
 package com.williamlu.gankio.home.presenter
 
-import com.williamlu.gankio.home.model.api.DouBanMovieService
+import com.williamlu.gankio.api.douban.DouBanMovieService
 import com.williamlu.datalib.base.ApiObserver
 import com.williamlu.datalib.bean.BaseBean
-import com.williamlu.gankio.home.model.bean.Movie
+import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.contract.MainContract
 
 /**

@@ -1,7 +1,8 @@
 package com.williamlu.gankio.home.contract
 
-import com.williamlu.gankio.home.model.bean.Movie
+import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.base.BaseLoadView
+import com.williamlu.gankio.home.presenter.MainPresenter
 
 /**
  * @Author: WilliamLu
@@ -12,7 +13,7 @@ interface MainContract {
 
     interface View : BaseLoadView {
 
-        fun setMainPresenter(presenter: Presenter)
+        fun setMainPresenter(presenter: MainPresenter)
 
         fun processComplete(data: List<Movie>)
 

@@ -1,9 +1,9 @@
-package com.williamlu.gankio.home.model.api
+package com.williamlu.gankio.api.douban
 
-import com.williamlu.gankio.base.BaseApiService
 import com.williamlu.datalib.base.DefaultTransformer
 import com.williamlu.datalib.bean.BaseBean
-import com.williamlu.gankio.home.model.bean.Movie
+import com.williamlu.gankio.api.BaseApiService
+import com.williamlu.gankio.home.model.Movie
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
