@@ -28,7 +28,6 @@ class DouBanMovieService : BaseApiService(), DouBanIMovie {
         }
     }
 
-
     override fun getMovieTop250(start: Int, count: Int): Observable<BaseBean<List<Movie>>> {
         return mDouBanIApiService
                 .getMovieTop250(start, count)

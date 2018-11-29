@@ -5,7 +5,7 @@ import java.io.Serializable
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class BaseBean<T> : Serializable {
     var code: Int? = 200

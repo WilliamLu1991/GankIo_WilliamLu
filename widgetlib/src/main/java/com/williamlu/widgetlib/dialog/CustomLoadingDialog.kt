@@ -2,6 +2,7 @@ package com.williamlu.widgetlib.dialog
 
 import android.app.Dialog
 import android.content.Context
+import android.text.TextUtils
 import android.view.LayoutInflater
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,9 +13,13 @@ import com.williamlu.widgetlib.R
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 object CustomLoadingDialog {
+
+    fun createLoadingDialog(context: Context): Dialog {
+        return createLoadingDialog(context, "")
+    }
 
     /**
      * 得到自定义的progressDialog
@@ -37,14 +42,16 @@ object CustomLoadingDialog {
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);*/
         Glide.with(context).load(R.drawable.loading).into(spaceshipImage)
-        tipTextView.text = msg // 设置加载信息
+        if (TextUtils.isEmpty(msg)) {
+            tipTextView.text = "加载中..."
+        } else {
+            tipTextView.text = msg // 设置加载信息
+        }
 
         val loadingDialog = Dialog(context, R.style.CustomLoadingDialog) // 创建自定义样式dialog
 
         loadingDialog.setCancelable(true) // 不可以用“返回键”取消
-        loadingDialog.setContentView(layout, LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT)) // 设置布局
+        loadingDialog.setContentView(layout, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)) // 设置布局
         return loadingDialog
 
     }

@@ -7,8 +7,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
+import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.event.ExitAppEvent
+import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -21,12 +23,14 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
-    override fun showLoadingView() {
+    private val mLoadingView = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
 
+    override fun showLoadingView() {
+        mLoadingView.show()
     }
 
     override fun dismissLoadingView() {
-
+        mLoadingView.dismiss()
     }
 
     /**
@@ -77,18 +81,12 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     @SuppressLint("CheckResult")
     private fun checkPermission(activity: Activity) {
         val rxPermissions = RxPermissions(this)
-        rxPermissions.request(Manifest.permission.READ_PHONE_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.MODIFY_AUDIO_SETTINGS,
-                Manifest.permission.BLUETOOTH)
-                .subscribe({ granted ->
-                    if (!granted) {
-                        PermissionDialog.showMissingPermissionDialog(activity)
-                    } else {
+        rxPermissions.request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.BLUETOOTH).subscribe({ granted ->
+            if (!granted) {
+                PermissionDialog.showMissingPermissionDialog(activity)
+            } else {
 
-                    }
-                }, { throwable -> throwable.printStackTrace() })
+            }
+        }, { throwable -> throwable.printStackTrace() })
     }
 }
