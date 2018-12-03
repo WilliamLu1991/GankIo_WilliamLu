@@ -46,7 +46,7 @@ android {
         debug {
             debuggable true
             zipAlignEnabled true
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
             versionNameSuffix "_debug"
@@ -80,4 +80,7 @@ dependencies {
     api rootProject.ext.dependencies["multidex"]
     api rootProject.ext.dependencies["eventbus"]
     api rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["BRVAH"]
+    api rootProject.ext.dependencies["cardview-v7"]
+    api rootProject.ext.dependencies["glide"]
 }

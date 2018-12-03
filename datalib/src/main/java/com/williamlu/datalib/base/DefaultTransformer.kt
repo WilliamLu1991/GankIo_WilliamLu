@@ -1,5 +1,6 @@
 package com.williamlu.datalib.base
 
+import com.orhanobut.logger.Logger
 import com.williamlu.datalib.bean.BaseBean
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer

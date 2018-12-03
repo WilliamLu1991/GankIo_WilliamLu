@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_empty_loading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_f6f6f6">
+
+    <LinearLayout
+        android:id="@+id/layout_ll_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/layout_loading_pb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:indeterminateBehavior="repeat"
+            android:indeterminateDrawable="@drawable/layout_loading" />
+
+        <TextView
+            android:id="@+id/layout_loading_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_15"
+            android:text="@string/msg_loading"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_ll_empty_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/layout_empty_data_iv"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img_data_empty" />
+
+        <TextView
+            android:id="@+id/layout_empty_data_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/msg_data_empty"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_ll_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/layout_error_iv"
+            android:layout_width="140dp"
+            android:layout_height="100dp"
+            android:background="@drawable/img_data_empty" />
+
+        <TextView
+            android:id="@+id/layout_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:text="@string/msg_error"
+            android:textColor="@color/color_cccccc"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,5 +1,6 @@
 package com.williamlu.gankio.api.douban
 
+import com.orhanobut.logger.Logger
 import com.williamlu.datalib.base.DefaultTransformer
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.gankio.api.BaseApiService

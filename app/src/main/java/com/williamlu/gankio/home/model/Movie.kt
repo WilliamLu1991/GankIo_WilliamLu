@@ -3,38 +3,52 @@ package com.williamlu.gankio.home.model
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
-class Movie {
-    var id: String? = null
-    var alt: String? = null
-    var year: String? = null
-    var title: String? = null
-    var original_title: String? = null
-    var genres: List<String>? = null
-    var casts: List<Cast>? = null
-    var directors: List<Cast>? = null
-    var images: Avatars? = null
-    val rating: Rating? = null
+data class Movie(
+    val alt: String,
+    val casts: List<Cast>,
+    val collect_count: Int,
+    val directors: List<Director>,
+    val genres: List<String>,
+    val id: String,
+    val images: Images,
+    val original_title: String,
+    val rating: Rating,
+    val subtype: String,
+    val title: String,
+    val year: String
+)
 
-    inner class Rating {
-        var average: Float = 0.toFloat()
-    }
+data class Rating(
+    val average: Double,
+    val max: Int,
+    val min: Int,
+    val stars: String
+)
 
-    inner class Cast {
-        var id: String? = null
-        var name: String? = null
-        var alt: String? = null
-        var avatars: Avatars? = null
+data class Cast(
+    val alt: String,
+    val avatars: Avatars,
+    val id: String,
+    val name: String
+)
 
-        override fun toString(): String {
-            return "cast.id=$id cast.name=$name | "
-        }
-    }
+data class Avatars(
+    val large: String,
+    val medium: String,
+    val small: String
+)
 
-    inner class Avatars {
-        var small: String? = null
-        var medium: String? = null
-        var large: String? = null
-    }
-}
+data class Images(
+    val large: String,
+    val medium: String,
+    val small: String
+)
+
+data class Director(
+    val alt: String,
+    val avatars: Avatars,
+    val id: String,
+    val name: String
+)

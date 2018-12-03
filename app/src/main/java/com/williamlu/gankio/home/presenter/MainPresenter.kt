@@ -1,5 +1,6 @@
 package com.williamlu.gankio.home.presenter
 
+import android.support.v4.widget.SwipeRefreshLayout
 import com.williamlu.gankio.api.douban.DouBanMovieService
 import com.williamlu.datalib.base.ApiObserver
 import com.williamlu.datalib.bean.BaseBean
@@ -11,21 +12,33 @@ import com.williamlu.gankio.home.contract.MainContract
  * @Date: 2018/11/23
  * @Description:
  */
-class MainPresenter(mView: MainContract.View) : MainContract.Presenter {
+class MainPresenter(cView: MainContract.View) : MainContract.Presenter {
 
-    private val mView: MainContract.View = mView
+    private var mView: MainContract.View? = null
+    private var mSwipeRl: SwipeRefreshLayout? = null
 
     init {
-        mView.setMainPresenter(this)
+        mView = cView
+        mView!!.setMainPresenter(this)
     }
 
     override fun getData() {
-        DouBanMovieService.getInstance()
-                .getMovieTop250(1, 20)
-                .subscribe(object : ApiObserver<BaseBean<List<Movie>>>() {
-                    override fun onNext(t: BaseBean<List<Movie>>) {
-                        mView.processComplete(t.subjects!!)
-                    }
-                })
+        DouBanMovieService.getInstance().getMovieTop250(1, 20).subscribe(object : ApiObserver<BaseBean<List<Movie>>>() {
+            override fun onNext(t: BaseBean<List<Movie>>) {
+                if (t == null) {
+                    mView!!.showEmptyDataView()
+                } else {
+                    mView!!.processComplete(t.subjects!!)
+                    mView!!.dismissAllView()
+                    mView!!.dismissLoadingDialog()
+                }
+            }
+
+            override fun onError(e: Throwable) {
+                super.onError(e)
+                mView!!.showErrorView()
+            }
+        })
     }
+
 }

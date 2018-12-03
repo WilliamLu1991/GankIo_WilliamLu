@@ -3,12 +3,18 @@ package com.williamlu.gankio.base
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.Dialog
 import android.os.Bundle
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
+import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
@@ -23,15 +29,11 @@ import org.greenrobot.eventbus.ThreadMode
  */
 abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
-    private val mLoadingView = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
-
-    override fun showLoadingView() {
-        mLoadingView.show()
-    }
-
-    override fun dismissLoadingView() {
-        mLoadingView.dismiss()
-    }
+    private var mLoadingDialog: Dialog? = null
+    private var mLayoutEmptyLoading: RelativeLayout? = null
+    private var mLayoutLlEmptyData: LinearLayout? = null
+    private var mLayoutLlLoading: LinearLayout? = null
+    private var mLayoutLlError: LinearLayout? = null
 
     /**
      * 获取布局ID
@@ -50,12 +52,21 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mLoadingDialog = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID())
             initPresenter()
             initView(savedInstanceState)
         }
+    }
+
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
+        mLayoutEmptyLoading = findViewById<RelativeLayout>(R.id.layout_empty_loading)
+        mLayoutLlEmptyData = findViewById<LinearLayout>(R.id.layout_ll_empty_data)
+        mLayoutLlLoading = findViewById<LinearLayout>(R.id.layout_ll_loading)
+        mLayoutLlError = findViewById<LinearLayout>(R.id.layout_ll_error)
     }
 
     /**
@@ -68,11 +79,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             Logger.d(" 退出应用")
             ActivityCacheManager.getInstance().appExit(this)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        EventBus.getDefault().unregister(this)
     }
 
     /**
@@ -89,4 +95,72 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             }
         }, { throwable -> throwable.printStackTrace() })
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
+    }
+
+    override fun showLoadingDialog() {
+        mLoadingDialog!!.show()
+    }
+
+    override fun dismissLoadingDialog() {
+        mLoadingDialog!!.dismiss()
+    }
+
+    override fun showLoadingView() {
+        if (mLayoutEmptyLoading != null) {
+            mLayoutEmptyLoading!!.visibility = View.VISIBLE
+            mLayoutLlLoading!!.visibility = View.VISIBLE
+            mLayoutLlEmptyData!!.visibility = View.GONE
+            mLayoutLlError!!.visibility = View.GONE
+        }
+    }
+
+    override fun showEmptyDataView() {
+        if (mLayoutEmptyLoading != null) {
+            mLayoutEmptyLoading!!.visibility = View.VISIBLE
+            mLayoutLlLoading!!.visibility = View.GONE
+            mLayoutLlEmptyData!!.visibility = View.VISIBLE
+            mLayoutLlError!!.visibility = View.GONE
+        }
+    }
+
+    override fun showErrorView() {
+        if (mLayoutEmptyLoading != null) {
+            mLayoutEmptyLoading!!.visibility = View.VISIBLE
+            mLayoutLlLoading!!.visibility = View.GONE
+            mLayoutLlEmptyData!!.visibility = View.GONE
+            mLayoutLlError!!.visibility = View.VISIBLE
+        }
+    }
+
+    override fun showEmptyView() {
+        if (mLayoutEmptyLoading != null) {
+            mLayoutEmptyLoading!!.visibility = View.VISIBLE
+            mLayoutLlLoading!!.visibility = View.GONE
+            mLayoutLlEmptyData!!.visibility = View.GONE
+            mLayoutLlError!!.visibility = View.VISIBLE
+        }
+    }
+
+    override fun dismissAllView() {
+        if (mLayoutEmptyLoading != null) {
+            mLayoutEmptyLoading!!.visibility = View.GONE
+        }
+    }
+
+    override fun showSwipeRl(mSwipeRl: SwipeRefreshLayout) {
+        if (mSwipeRl != null && !mSwipeRl!!.isRefreshing) {
+            mSwipeRl!!.isRefreshing = true
+        }
+    }
+
+    override fun dismissSwipeRl(mSwipeRl: SwipeRefreshLayout) {
+        if (mSwipeRl != null && mSwipeRl!!.isRefreshing) {
+            mSwipeRl!!.isRefreshing = false
+        }
+    }
+
 }
