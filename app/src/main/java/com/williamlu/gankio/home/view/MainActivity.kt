@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : BaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
     private var mainAdapter: MainListAdapter? = null
-
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_main
     }
@@ -35,6 +34,10 @@ class MainActivity : BaseActivity(), MainContract.View {
         dismissSwipeRl(mSwipeRl)
     }
 
+    override fun processError(msg: String) {
+        dismissSwipeRl(mSwipeRl)
+    }
+
     private fun setMainListData(data: List<Movie>) {
         if (mainAdapter == null) {
             main_rv.layoutManager = LinearLayoutManager(this)
@@ -46,6 +49,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        mBaseToolBarHelper!!.dismissLeftView().showRight1View()
         showLoadingView()
         mMainPresenter!!.getData()
         mSwipeRl.setOnRefreshListener {

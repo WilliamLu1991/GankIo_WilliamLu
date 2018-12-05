@@ -10,17 +10,16 @@ import com.williamlu.gankio.home.presenter.MainPresenter
  * @Description:
  */
 interface MainContract {
-
     interface View : BaseLoadView {
-
         fun setMainPresenter(presenter: MainPresenter)
 
         fun processComplete(data: List<Movie>)
 
+        fun processError(msg: String)
+
     }
 
     interface Presenter {
-
         fun getData()
 
     }

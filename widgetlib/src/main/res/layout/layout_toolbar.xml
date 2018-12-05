@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/base_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:gravity="center_vertical"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    app:contentInsetStart="@dimen/dp_0"
+    app:popupTheme="@style/AppTheme.PopupOverlay">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:id="@+id/toolbar_ib_left"
+            android:layout_width="@dimen/dp_35"
+            android:layout_height="@dimen/dp_35"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/toolbar_tv_title"
+            android:layout_width="@dimen/dp_200"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="首页"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/sp_20" />
+
+        <ImageButton
+            android:id="@+id/toolbar_ib_right1"
+            android:layout_width="@dimen/dp_26"
+            android:layout_height="@dimen/dp_26"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/ic_personal"
+            android:visibility="gone" />
+
+        <ImageButton
+            android:id="@+id/toolbar_ib_right2"
+            android:layout_width="@dimen/dp_25"
+            android:layout_height="@dimen/dp_25"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/toolbar_ib_right1"
+            android:background="@drawable/ic_search"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/toolbar_ll_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_toRightOf="@id/toolbar_ib_left"
+            android:focusableInTouchMode="true"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/toolbar_et_search_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/shape_corner_ffffff"
+                android:hint="请输入搜索内容"
+                android:paddingLeft="@dimen/dp_10"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="@dimen/sp_15" />
+
+            <TextView
+                android:id="@+id/toolbar_tv_search_confirm"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_5"
+                android:gravity="center"
+                android:text="确认"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/sp_16" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</android.support.v7.widget.Toolbar>

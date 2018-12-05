@@ -7,6 +7,8 @@
     android:orientation="vertical"
     tools:context=".home.view.MainActivity">
 
+    <include layout="@layout/layout_toolbar" />
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/mSwipeRl"
         android:layout_width="match_parent"
@@ -15,7 +17,6 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/main_rv"

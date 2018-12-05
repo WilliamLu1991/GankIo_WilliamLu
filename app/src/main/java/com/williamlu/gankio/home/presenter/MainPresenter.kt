@@ -13,9 +13,7 @@ import com.williamlu.gankio.home.contract.MainContract
  * @Description:
  */
 class MainPresenter(cView: MainContract.View) : MainContract.Presenter {
-
     private var mView: MainContract.View? = null
-    private var mSwipeRl: SwipeRefreshLayout? = null
 
     init {
         mView = cView
@@ -36,6 +34,7 @@ class MainPresenter(cView: MainContract.View) : MainContract.Presenter {
 
             override fun onError(e: Throwable) {
                 super.onError(e)
+                mView!!.processError(e.toString())
                 mView!!.showErrorView()
             }
         })

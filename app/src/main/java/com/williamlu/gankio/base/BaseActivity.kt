@@ -7,6 +7,7 @@ import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -16,6 +17,7 @@ import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
+import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
 import org.greenrobot.eventbus.EventBus
@@ -28,12 +30,13 @@ import org.greenrobot.eventbus.ThreadMode
  * @Description:
  */
 abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
-
     private var mLoadingDialog: Dialog? = null
     private var mLayoutEmptyLoading: RelativeLayout? = null
     private var mLayoutLlEmptyData: LinearLayout? = null
     private var mLayoutLlLoading: LinearLayout? = null
     private var mLayoutLlError: LinearLayout? = null
+    private var mBaseToolbar: Toolbar? = null
+    protected var mBaseToolBarHelper: BaseToolBarHelper? = null
 
     /**
      * 获取布局ID
@@ -52,6 +55,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        checkPermission(this)
+        ActivityCacheManager.getInstance().addActivity(this)
         mLoadingDialog = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
@@ -67,6 +72,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         mLayoutLlEmptyData = findViewById<LinearLayout>(R.id.layout_ll_empty_data)
         mLayoutLlLoading = findViewById<LinearLayout>(R.id.layout_ll_loading)
         mLayoutLlError = findViewById<LinearLayout>(R.id.layout_ll_error)
+        mBaseToolbar = findViewById<Toolbar>(R.id.base_toolbar)
+        if (mBaseToolbar != null) {
+            setSupportActionBar(mBaseToolbar)
+            mBaseToolBarHelper = BaseToolBarHelper.getInstance(mBaseToolbar!!)
+        }
     }
 
     /**
@@ -85,13 +95,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      * 检查权限 及申请
      */
     @SuppressLint("CheckResult")
-    private fun checkPermission(activity: Activity) {
+    public fun checkPermission(activity: Activity) {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.BLUETOOTH).subscribe({ granted ->
             if (!granted) {
                 PermissionDialog.showMissingPermissionDialog(activity)
-            } else {
-
             }
         }, { throwable -> throwable.printStackTrace() })
     }
@@ -152,14 +160,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     }
 
     override fun showSwipeRl(mSwipeRl: SwipeRefreshLayout) {
-        if (mSwipeRl != null && !mSwipeRl!!.isRefreshing) {
-            mSwipeRl!!.isRefreshing = true
+        if (mSwipeRl != null && !mSwipeRl.isRefreshing) {
+            mSwipeRl.isRefreshing = true
         }
     }
 
     override fun dismissSwipeRl(mSwipeRl: SwipeRefreshLayout) {
-        if (mSwipeRl != null && mSwipeRl!!.isRefreshing) {
-            mSwipeRl!!.isRefreshing = false
+        if (mSwipeRl != null && mSwipeRl.isRefreshing) {
+            mSwipeRl.isRefreshing = false
         }
     }
 
