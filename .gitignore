@@ -17,3 +17,5 @@ bin/
 gen/
 out/
 .idea
+
+output.json
