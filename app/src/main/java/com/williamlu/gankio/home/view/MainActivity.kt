@@ -49,7 +49,7 @@ class MainActivity : GankBaseActivity(), MainContract.View {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
-        mBaseToolBarHelper!!.dismissLeftView().showRight1View()
+        mBaseToolBarHelper!!.setBgImg(R.drawable.ic_personal, -1)
         showLoadingView()
         mMainPresenter!!.getData()
         mSwipeRl.setOnRefreshListener {
