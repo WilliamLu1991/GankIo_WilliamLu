@@ -3,7 +3,7 @@ package com.williamlu.gankio.home.view
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import com.williamlu.gankio.R
-import com.williamlu.gankio.base.BaseActivity
+import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * @Date: 2018/11/20
  * @Description:
  */
-class MainActivity : BaseActivity(), MainContract.View {
+class MainActivity : GankBaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
     private var mainAdapter: MainListAdapter? = null
     override fun getContentViewLayoutID(): Int {
