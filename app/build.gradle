@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-
     signingConfigs {
         release {
             keyAlias 'williamlu'
@@ -31,6 +30,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
     }
 
     buildTypes {
@@ -51,9 +51,26 @@ android {
         }
     }
 
+    productFlavors {
+        xiaomi {
+        }
+        qh360 {
+        }
+        huawei {
+        }
+        tencent {
+        }
+        wandoujia {
+        }
+
+        productFlavors.all {
+            flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+        }
+    }
+
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "GankIo-${buildType.name}_V${defaultConfig.versionName}_Build${defaultConfig.versionCode}.apk"
+            outputFileName = "GankIo-${buildType.name}_V${defaultConfig.versionName}_Build${defaultConfig.versionCode}_${productFlavors.name}.apk"
         }
     }
 
