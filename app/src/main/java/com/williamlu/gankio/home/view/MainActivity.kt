@@ -17,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : GankBaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
     private var mainAdapter: MainListAdapter? = null
+
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_main
     }
@@ -55,6 +56,10 @@ class MainActivity : GankBaseActivity(), MainContract.View {
         mSwipeRl.setOnRefreshListener {
             mMainPresenter!!.getData()
         }
+    }
+
+    override fun initListener() {
+
     }
 
 }

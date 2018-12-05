@@ -17,6 +17,7 @@ import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
+import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
@@ -54,6 +55,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      */
     protected abstract fun initView(savedInstanceState: Bundle?)
 
+    /**
+     * 初始化监听事件
+     */
+    protected abstract fun initListener()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (mActivityCacheManager == null) {
@@ -68,6 +74,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             setContentView(getContentViewLayoutID())
             initPresenter()
             initView(savedInstanceState)
+            initListener()
         }
     }
 
@@ -100,7 +107,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      * 检查权限 及申请
      */
     @SuppressLint("CheckResult")
-    public fun checkPermission(activity: Activity) {
+    fun checkPermission(activity: Activity) {
         val rxPermissions = RxPermissions(this)
         rxPermissions.request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.BLUETOOTH).subscribe({ granted ->
             if (!granted) {
@@ -174,6 +181,12 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     override fun dismissSwipeRl(mSwipeRl: SwipeRefreshLayout) {
         if (mSwipeRl != null && mSwipeRl.isRefreshing) {
             mSwipeRl.isRefreshing = false
+        }
+    }
+
+    fun clickToolbarBack() {
+        mBaseToolBarHelper!!.getLeftView().setOnClickListener {
+            this.finish()
         }
     }
 
