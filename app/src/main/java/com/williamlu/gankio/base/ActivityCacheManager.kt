@@ -7,10 +7,9 @@ import java.util.ArrayList
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class ActivityCacheManager {
-
     companion object {
         private val instance = ActivityCacheManager()
 
@@ -61,14 +60,9 @@ class ActivityCacheManager {
      * @param context 当前上下文
      */
     fun appExit(context: Context) {
-        try {
-            finishAllActivity()
-            val activityMgr = context.getSystemService(Context
-                    .ACTIVITY_SERVICE) as ActivityManager
-            activityMgr.killBackgroundProcesses(context.packageName)
-            System.exit(0)
-        } catch (e: Exception) {
-        }
-
+        finishAllActivity()
+        val activityMgr = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        activityMgr.killBackgroundProcesses(context.packageName)
+        System.exit(0)
     }
 }

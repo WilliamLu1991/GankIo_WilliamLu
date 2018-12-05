@@ -36,6 +36,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mLayoutLlLoading: LinearLayout? = null
     private var mLayoutLlError: LinearLayout? = null
     private var mBaseToolbar: Toolbar? = null
+    private var mActivityCacheManager: ActivityCacheManager? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
 
     /**
@@ -55,9 +56,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        checkPermission(this)
-        ActivityCacheManager.getInstance().addActivity(this)
-        mLoadingDialog = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
+        if (mActivityCacheManager == null) {
+            mActivityCacheManager = ActivityCacheManager.getInstance()
+        }
+        mActivityCacheManager!!.addActivity(this)
+        if (mLoadingDialog == null) {
+            mLoadingDialog = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
+        }
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID())
@@ -106,6 +111,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun onDestroy() {
         super.onDestroy()
+        mActivityCacheManager!!.removeActivity(this)
         EventBus.getDefault().unregister(this)
     }
 
