@@ -149,7 +149,7 @@ object DateUtils {
                 return true
             }
         } catch (e: Exception) {
-            // TODO: handle exception
+
         }
 
         return false
