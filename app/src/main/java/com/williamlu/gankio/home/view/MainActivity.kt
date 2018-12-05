@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description:
+ * @Description:首页
  */
 class MainActivity : GankBaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
@@ -59,7 +59,9 @@ class MainActivity : GankBaseActivity(), MainContract.View {
     }
 
     override fun initListener() {
-
+        mBaseToolBarHelper!!.getLeftView().setOnClickListener {
+            //TODO
+        }
     }
 
 }
