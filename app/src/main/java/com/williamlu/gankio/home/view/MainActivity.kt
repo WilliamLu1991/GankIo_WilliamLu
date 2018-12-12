@@ -2,11 +2,15 @@ package com.williamlu.gankio.home.view
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.view.KeyEvent
+import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
+import com.williamlu.gankio.base.ActivityCacheManager
 import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
+import com.williamlu.toolslib.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**
@@ -61,7 +65,23 @@ class MainActivity : GankBaseActivity(), MainContract.View {
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
             //TODO
+
         }
+    }
+
+    private var exitTime: Long = 0
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
+            if (System.currentTimeMillis() - exitTime > 2000) {
+                ToastUtils.showToast(AppConstant.ToastConstant.EXIT_APP)
+                exitTime = System.currentTimeMillis()
+            } else {
+                ToastUtils.dismissToast()
+                ActivityCacheManager.getInstance().finishAllActivity()
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 
 }

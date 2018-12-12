@@ -23,7 +23,7 @@ class AppConstant {
     }
 
     object ToastConstant {
-
+        const val EXIT_APP = "再次点击将退出应用！"
         const val NO_INPUT_PHONE = "您还未填写手机号码哦～！"
         const val ERROR_INPUT_PHONE = "您填写的手机号码不准确哦！"
         const val NO_INPUT_SECCODE = "您还未填写验证码哦～！"

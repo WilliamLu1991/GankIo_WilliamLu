@@ -8,7 +8,7 @@ import android.widget.Toast
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 object ToastUtils {
     private var toast: Toast? = null
@@ -25,5 +25,12 @@ object ToastUtils {
         toast!!.setGravity(Gravity.CENTER, 0, 0)
         toast!!.view = layout
         toast!!.show()
+    }
+
+    fun dismissToast() {
+        if (toast != null) {
+            toast!!.cancel()
+        }
+        toast = null
     }
 }
