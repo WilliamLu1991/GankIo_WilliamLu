@@ -1,7 +1,5 @@
 package com.williamlu.toolslib
 
-import android.annotation.SuppressLint
-import android.widget.TextView
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -13,7 +11,7 @@ import java.util.concurrent.TimeUnit
  * @Date: 2018/11/21
  * @Description: 倒计时工具类
  */
-class RxCountDownUtils(listener: onRxCountDownListener? = null) {
+class RxCountDownUtils(listener: onRxCountDownListener) {
     private var sDisposable: Disposable? = null
     private var mListener: onRxCountDownListener? = listener
 
