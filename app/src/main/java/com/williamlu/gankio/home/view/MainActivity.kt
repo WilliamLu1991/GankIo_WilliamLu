@@ -63,16 +63,6 @@ class MainActivity : GankBaseActivity(), MainContract.View {
         mSwipeRl.setOnRefreshListener {
             mMainPresenter!!.getData()
         }
-
-        KeepAliveUtils.getInstance().startKeepAlive(5, object : KeepAliveUtils.onKeepAliveListener {
-            override fun onSubscribe(d: Disposable) {
-                addSubscribe(d)
-            }
-
-            override fun onNext(t: Long) {
-
-            }
-        })
     }
 
     override fun initListener() {

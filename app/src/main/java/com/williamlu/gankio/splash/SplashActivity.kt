@@ -40,16 +40,6 @@ class SplashActivity : GankBaseActivity() {
             }
 
         })
-
-        KeepAliveUtils.getInstance().startKeepAlive(3, object : KeepAliveUtils.onKeepAliveListener {
-            override fun onSubscribe(disposable: Disposable) {
-                addSubscribe(disposable)
-            }
-
-            override fun onNext(t: Long) {
-
-            }
-        })
     }
 
     override fun initListener() {
