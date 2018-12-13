@@ -31,4 +31,5 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["testRunner"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     api rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-compiler"]
 }

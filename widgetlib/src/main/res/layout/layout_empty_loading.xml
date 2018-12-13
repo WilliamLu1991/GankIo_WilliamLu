@@ -14,12 +14,11 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <ProgressBar
-            android:id="@+id/layout_loading_pb"
+        <ImageView
+            android:id="@+id/layout_iv_loading"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:indeterminateBehavior="repeat"
-            android:indeterminateDrawable="@drawable/layout_loading" />
+            android:indeterminateDrawable="@drawable/gif_loading" />
 
         <TextView
             android:id="@+id/layout_loading_tv"

@@ -9,18 +9,20 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import com.bumptech.glide.Glide
 import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
-import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
+import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -35,11 +37,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mLayoutEmptyLoading: RelativeLayout? = null
     private var mLayoutLlEmptyData: LinearLayout? = null
     private var mLayoutLlLoading: LinearLayout? = null
+    private var mLayoutIvLoading: ImageView? = null
     private var mLayoutLlError: LinearLayout? = null
     private var mBaseToolbar: Toolbar? = null
     private var mActivityCacheManager: ActivityCacheManager? = null
     private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
+    protected var mDisposable: Disposable? = null
 
     /**
      * 获取布局ID
@@ -84,6 +88,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         mLayoutEmptyLoading = findViewById<RelativeLayout>(R.id.layout_empty_loading)
         mLayoutLlEmptyData = findViewById<LinearLayout>(R.id.layout_ll_empty_data)
         mLayoutLlLoading = findViewById<LinearLayout>(R.id.layout_ll_loading)
+        mLayoutIvLoading = findViewById<ImageView>(R.id.layout_iv_loading)
         mLayoutLlError = findViewById<LinearLayout>(R.id.layout_ll_error)
         mBaseToolbar = findViewById<Toolbar>(R.id.base_toolbar)
         mSwipeRl = findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
@@ -120,6 +125,10 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (mDisposable != null) {
+            mDisposable!!.dispose()
+            mDisposable = null
+        }
         mActivityCacheManager!!.removeActivity(this)
         EventBus.getDefault().unregister(this)
     }
@@ -134,6 +143,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     override fun showLoadingView() {
         if (mLayoutEmptyLoading != null) {
+            Glide.with(this).load(R.drawable.gif_loading).into(mLayoutIvLoading!!)
             mLayoutEmptyLoading!!.visibility = View.VISIBLE
             mLayoutLlLoading!!.visibility = View.VISIBLE
             mLayoutLlEmptyData!!.visibility = View.GONE

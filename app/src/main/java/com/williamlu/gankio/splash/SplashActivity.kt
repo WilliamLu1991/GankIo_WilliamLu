@@ -6,9 +6,11 @@ import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.home.view.MainActivity
 import com.williamlu.toolslib.RxCountDownUtils
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : GankBaseActivity() {
+
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_splash
     }
@@ -19,6 +21,10 @@ class SplashActivity : GankBaseActivity() {
 
     override fun initView(savedInstanceState: Bundle?) {
         RxCountDownUtils(object : RxCountDownUtils.onRxCountDownListener {
+            override fun onSubscribe(disposable: Disposable) {
+                mDisposable = disposable
+            }
+
             override fun onBefore() {
 
             }
@@ -41,4 +47,5 @@ class SplashActivity : GankBaseActivity() {
             finish()
         }
     }
+
 }
