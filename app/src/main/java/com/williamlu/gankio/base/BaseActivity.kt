@@ -38,6 +38,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mLayoutLlError: LinearLayout? = null
     private var mBaseToolbar: Toolbar? = null
     private var mActivityCacheManager: ActivityCacheManager? = null
+    private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
 
     /**
@@ -85,6 +86,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         mLayoutLlLoading = findViewById<LinearLayout>(R.id.layout_ll_loading)
         mLayoutLlError = findViewById<LinearLayout>(R.id.layout_ll_error)
         mBaseToolbar = findViewById<Toolbar>(R.id.base_toolbar)
+        mSwipeRl = findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
         if (mBaseToolbar != null) {
             setSupportActionBar(mBaseToolbar)
             mBaseToolBarHelper = BaseToolBarHelper.getInstance(mBaseToolbar!!)
@@ -172,15 +174,15 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         }
     }
 
-    override fun showSwipeRl(mSwipeRl: SwipeRefreshLayout) {
-        if (mSwipeRl != null && !mSwipeRl.isRefreshing) {
-            mSwipeRl.isRefreshing = true
+    override fun showSwipeRl() {
+        if (!mSwipeRl!!.isRefreshing) {
+            mSwipeRl!!.isRefreshing = true
         }
     }
 
-    override fun dismissSwipeRl(mSwipeRl: SwipeRefreshLayout) {
-        if (mSwipeRl != null && mSwipeRl.isRefreshing) {
-            mSwipeRl.isRefreshing = false
+    override fun dismissSwipeRl() {
+        if (mSwipeRl!!.isRefreshing) {
+            mSwipeRl!!.isRefreshing = false
         }
     }
 

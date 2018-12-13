@@ -36,11 +36,11 @@ class MainActivity : GankBaseActivity(), MainContract.View {
 
     override fun processComplete(data: List<Movie>) {
         setMainListData(data)
-        dismissSwipeRl(mSwipeRl)
+        dismissSwipeRl()
     }
 
     override fun processError(msg: String) {
-        dismissSwipeRl(mSwipeRl)
+        dismissSwipeRl()
     }
 
     private fun setMainListData(data: List<Movie>) {

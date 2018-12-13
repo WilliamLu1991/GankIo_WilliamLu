@@ -21,7 +21,7 @@
         android:background="@drawable/shape_corner_50000000"
         android:gravity="center"
         android:padding="@dimen/dp_8"
-        android:text="点击跳过：5s"
+        android:text="跳过：5s"
         android:textSize="@dimen/sp_10"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

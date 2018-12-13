@@ -46,11 +46,11 @@ interface BaseLoadView {
     /**
      * 显示Swipe
      */
-    fun showSwipeRl(swipeView: SwipeRefreshLayout)
+    fun showSwipeRl()
 
     /**
      * 隐藏Swipe
      */
-    fun dismissSwipeRl(swipeView: SwipeRefreshLayout)
+    fun dismissSwipeRl()
 
 }

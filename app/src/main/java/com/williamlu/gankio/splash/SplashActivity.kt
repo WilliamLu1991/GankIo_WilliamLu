@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.home.view.MainActivity
+import com.williamlu.toolslib.RxCountDownUtils
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : GankBaseActivity() {
@@ -17,12 +18,26 @@ class SplashActivity : GankBaseActivity() {
     }
 
     override fun initView(savedInstanceState: Bundle?) {
+        RxCountDownUtils(object : RxCountDownUtils.onRxCountDownListener {
+            override fun onBefore() {
 
+            }
+
+            override fun onNext(time: Int) {
+                splash_tv_time.text = "跳过：" + time.toString() + " s"
+            }
+
+            override fun onComplete() {
+                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                finish()
+            }
+
+        }).countdown(5)
     }
 
     override fun initListener() {
         splash_tv_time.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
             finish()
         }
     }
