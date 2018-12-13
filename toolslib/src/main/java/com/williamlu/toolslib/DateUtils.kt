@@ -12,9 +12,9 @@ import java.util.*
  */
 object DateUtils {
 
-    val DATE_YYYYMMDD = "yyyyMMdd"
-    val DATE_YYYYMMDDHHMMSS = "yyyyMMddHHmmss"
-    val DATE_YYYYMMDDHHMMSSSSS = "yyyyMMddHHmmssSSS"
+    val DATE_YYYYMMDD = "yyyy-MM-dd"
+    val DATE_YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss"
+    val DATE_YYYYMMDDHHMMSSSSS = "yyyy-MM-dd HH:mm:ss SSS"
     val DATE_VISUAL14FORMAT = "yyyy-MM-dd HH:mm:ss"
     val LOCALE = Locale.SIMPLIFIED_CHINESE
     private var last_format_type = ""

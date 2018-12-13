@@ -37,7 +37,7 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
         }
     }
 
-    companion object {
+    /*companion object {
         private var INSTANCE: BaseToolBarHelper? = null
 
         fun getInstance(baseToolbar: Toolbar): BaseToolBarHelper {
@@ -48,7 +48,7 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
             }
             return INSTANCE!!
         }
-    }
+    }*/
 
     fun showLeftView(): BaseToolBarHelper {
         mToolbarIbLeft!!.visibility = View.VISIBLE

@@ -5,13 +5,16 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
-import com.williamlu.gankio.base.ActivityCacheManager
 import com.williamlu.gankio.base.GankBaseActivity
+import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
+import com.williamlu.toolslib.KeepAliveUtils
 import com.williamlu.toolslib.ToastUtils
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * @Author: WilliamLu
@@ -60,12 +63,21 @@ class MainActivity : GankBaseActivity(), MainContract.View {
         mSwipeRl.setOnRefreshListener {
             mMainPresenter!!.getData()
         }
+
+        KeepAliveUtils.getInstance().startKeepAlive(5, object : KeepAliveUtils.onKeepAliveListener {
+            override fun onSubscribe(d: Disposable) {
+                addSubscribe(d)
+            }
+
+            override fun onNext(t: Long) {
+
+            }
+        })
     }
 
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            //TODO
-
+            clearSubscribe()
         }
     }
 
@@ -77,7 +89,7 @@ class MainActivity : GankBaseActivity(), MainContract.View {
                 exitTime = System.currentTimeMillis()
             } else {
                 ToastUtils.dismissToast()
-                ActivityCacheManager.getInstance().finishAllActivity()
+                EventBus.getDefault().post(ExitAppEvent(this))
             }
             return true
         }

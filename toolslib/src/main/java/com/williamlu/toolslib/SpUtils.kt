@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.support.v4.util.SimpleArrayMap
+import android.text.TextUtils
 
 /**
  * <pre>
@@ -32,26 +33,13 @@ class SpUtils private constructor(spName: String) {
 
         fun getInstance(spName: String): SpUtils {
             var spName = spName
-            if (isSpace(spName)) spName = "spUtils"
+            if (TextUtils.isEmpty(spName)) spName = "spUtils"
             var spUtils: SpUtils? = SP_UTILS_MAP.get(spName)
             if (spUtils == null) {
                 spUtils = SpUtils(spName)
                 SP_UTILS_MAP.put(spName, spUtils)
             }
             return spUtils
-        }
-
-        private fun isSpace(s: String?): Boolean {
-            if (s == null) return true
-            var i = 0
-            val len = s.length
-            while (i < len) {
-                if (!Character.isWhitespace(s[i])) {
-                    return false
-                }
-                ++i
-            }
-            return true
         }
     }
 

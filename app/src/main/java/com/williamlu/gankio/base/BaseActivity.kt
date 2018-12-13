@@ -13,7 +13,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.orhanobut.logger.Logger
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
@@ -22,6 +21,7 @@ import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import com.williamlu.widgetlib.dialog.PermissionDialog
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -43,7 +43,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mActivityCacheManager: ActivityCacheManager? = null
     private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
-    protected var mDisposable: Disposable? = null
+    protected var mCompositeDisposable: CompositeDisposable? = null
 
     /**
      * 获取布局ID
@@ -94,7 +94,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         mSwipeRl = findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
         if (mBaseToolbar != null) {
             setSupportActionBar(mBaseToolbar)
-            mBaseToolBarHelper = BaseToolBarHelper.getInstance(mBaseToolbar!!)
+            mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
     }
 
@@ -104,10 +104,35 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun eventbusListener(o: Any) {
         if (o is ExitAppEvent) {
+            clearSubscribe()
             GankIoApplation.offNetworkReceiver()
-            Logger.d(" 退出应用")
             ActivityCacheManager.getInstance().appExit(this)
         }
+    }
+
+    /**
+     * 统一管理Disposable 添加和清空订阅
+     */
+    protected fun addSubscribe(disposable: Disposable?) {
+        if (disposable == null) return
+        if (mCompositeDisposable == null) {
+            mCompositeDisposable = CompositeDisposable()
+        }
+        mCompositeDisposable!!.add(disposable)
+    }
+
+    protected fun clearSubscribe() {
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable!!.clear()
+            mCompositeDisposable = null
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        clearSubscribe()
+        mActivityCacheManager!!.removeActivity(this)
+        EventBus.getDefault().unregister(this)
     }
 
     /**
@@ -121,16 +146,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
                 PermissionDialog.showMissingPermissionDialog(activity)
             }
         }, { throwable -> throwable.printStackTrace() })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        if (mDisposable != null) {
-            mDisposable!!.dispose()
-            mDisposable = null
-        }
-        mActivityCacheManager!!.removeActivity(this)
-        EventBus.getDefault().unregister(this)
     }
 
     override fun showLoadingDialog() {
@@ -193,12 +208,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     override fun dismissSwipeRl() {
         if (mSwipeRl!!.isRefreshing) {
             mSwipeRl!!.isRefreshing = false
-        }
-    }
-
-    fun clickToolbarBack() {
-        mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            this.finish()
         }
     }
 

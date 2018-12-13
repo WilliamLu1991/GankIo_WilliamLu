@@ -11,51 +11,56 @@ import java.util.concurrent.TimeUnit
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class KeepAliveUtils private constructor() {
-
     private var disposable: Disposable? = null
+    private var mListener: onKeepAliveListener? = null
 
-    internal object HolderClass {
-        var iodhSingle = KeepAliveUtils()
+    interface onKeepAliveListener {
+        fun onSubscribe(disposable: Disposable)
+        fun onNext(t: Long)
     }
 
     companion object {
-        val STAET_TIME_SECONDS = 0
-        val PERIOD_TIME_SECONDS = 30
+        private var INSTANCE: KeepAliveUtils? = null
 
         fun getInstance(): KeepAliveUtils {
-            return HolderClass.iodhSingle
+            synchronized(KeepAliveUtils::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = KeepAliveUtils()
+                }
+            }
+            return INSTANCE!!
         }
     }
 
     /**
      * 开启保活
      */
-    fun onKeepAlive() {
-        offKeepAlive()
-        Observable.interval(STAET_TIME_SECONDS.toLong(), PERIOD_TIME_SECONDS.toLong(), TimeUnit.SECONDS)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<Long> {
-                    override fun onNext(t: Long) {
-                        //要调用的方法
-                        Logger.d("保活开始调用！" + System.currentTimeMillis())
-                    }
+    fun startKeepAlive(time: Int, listener: onKeepAliveListener) {
+        mListener = listener
+        Observable.interval(0, time.toLong(), TimeUnit.SECONDS).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(object : Observer<Long> {
+            override fun onSubscribe(d: Disposable) {
+                disposable = d
+                mListener!!.onSubscribe(d)
+            }
 
-                    override fun onSubscribe(d: Disposable) {
-                        disposable = d
-                    }
+            override fun onNext(t: Long) {
+                //要调用的方法
+                Logger.d("保活开始调用！" + DateUtils.getCurrentDateTime())
+                mListener!!.onNext(t)
+            }
 
-                    override fun onError(e: Throwable) {
-                        Logger.e("保活失败！" + e.toString())
-                    }
+            override fun onError(e: Throwable) {
+                Logger.e("保活失败！" + e.toString())
+                offKeepAlive()
+            }
 
-                    override fun onComplete() {
+            override fun onComplete() {
 
-                    }
-                })
+            }
+        })
     }
 
     /**

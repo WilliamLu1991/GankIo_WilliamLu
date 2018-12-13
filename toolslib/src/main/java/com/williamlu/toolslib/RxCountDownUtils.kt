@@ -11,9 +11,9 @@ import java.util.concurrent.TimeUnit
  * @Date: 2018/11/21
  * @Description: 倒计时工具类
  */
-class RxCountDownUtils(listener: onRxCountDownListener) {
+class RxCountDownUtils private constructor() {
     private var sDisposable: Disposable? = null
-    private var mListener: onRxCountDownListener? = listener
+    private var mListener: onRxCountDownListener? = null
 
     interface onRxCountDownListener {
         fun onSubscribe(disposable: Disposable)
@@ -23,8 +23,22 @@ class RxCountDownUtils(listener: onRxCountDownListener) {
 
     }
 
-    fun countdown(time: Int) {
+    companion object {
+        private var INSTANCE: RxCountDownUtils? = null
+
+        fun getInstance(): RxCountDownUtils {
+            synchronized(RxCountDownUtils::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = RxCountDownUtils()
+                }
+            }
+            return INSTANCE!!
+        }
+    }
+
+    fun countdown(time: Int, listener: onRxCountDownListener) {
         var time = time
+        mListener = listener
 
         if (time < 0) time = 0
         val countTime = time
@@ -61,10 +75,8 @@ class RxCountDownUtils(listener: onRxCountDownListener) {
             sDisposable!!.dispose()
             sDisposable = null
         }
-        if (mListener != null) {
-            mListener = null
-        }
     }
+
     /*fun countdown(time: Int, textView: TextView) {
         countdown(time, textView, -1, -1, -1, -1)
     }

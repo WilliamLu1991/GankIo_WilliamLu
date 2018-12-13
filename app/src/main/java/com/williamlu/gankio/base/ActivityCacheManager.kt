@@ -2,19 +2,24 @@ package com.williamlu.gankio.base
 
 import android.app.ActivityManager
 import android.content.Context
-import java.util.ArrayList
+import java.util.*
 
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
  * @Description:
  */
-class ActivityCacheManager {
+class ActivityCacheManager private constructor() {
     companion object {
-        private val instance = ActivityCacheManager()
+        private var INSTANCE: ActivityCacheManager? = null
 
         fun getInstance(): ActivityCacheManager {
-            return instance
+            synchronized(ActivityCacheManager::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = ActivityCacheManager()
+                }
+            }
+            return INSTANCE!!
         }
     }
 

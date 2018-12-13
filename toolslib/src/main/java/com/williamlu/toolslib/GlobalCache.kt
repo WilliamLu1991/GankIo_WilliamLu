@@ -5,9 +5,9 @@ import android.content.Context
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
-class GlobalCache {
+class GlobalCache private constructor() {
     private var mContext: Context? = null
 
     fun registerContext(context: Context) {
@@ -21,10 +21,15 @@ class GlobalCache {
     }
 
     companion object {
-        private val instance = GlobalCache()
+        private var INSTANCE: GlobalCache? = null
 
         fun getInstance(): GlobalCache {
-            return instance
+            synchronized(GlobalCache::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = GlobalCache()
+                }
+            }
+            return INSTANCE!!
         }
 
         fun getContext(): Context {
