@@ -11,9 +11,9 @@ import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
 import com.williamlu.toolslib.ToastUtils
+import com.williamlu.widgetlib.dialog.FullSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
-import com.williamlu.widgetlib.dialog.FullSheetDialog
 
 /**
  * @Author: WilliamLu
