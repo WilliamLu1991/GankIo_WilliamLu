@@ -1,11 +1,11 @@
-package com.williamlu.gankio.home.view
+package com.williamlu.widgetlib.dialog
 
 import android.content.Context
 import android.support.design.widget.BottomSheetBehavior
 import android.support.design.widget.BottomSheetDialog
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import com.williamlu.gankio.R
+import com.williamlu.widgetlib.R
 
 /**
  * @Author: WilliamLu

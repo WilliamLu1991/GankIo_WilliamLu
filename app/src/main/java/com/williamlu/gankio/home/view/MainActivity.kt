@@ -13,11 +13,7 @@ import com.williamlu.gankio.home.presenter.MainPresenter
 import com.williamlu.toolslib.ToastUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
-import android.support.design.widget.BottomSheetDialog
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.widget.LinearLayout
-import java.util.zip.Inflater
+import com.williamlu.widgetlib.dialog.FullSheetDialog
 
 /**
  * @Author: WilliamLu
