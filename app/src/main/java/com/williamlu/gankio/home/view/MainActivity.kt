@@ -10,11 +10,14 @@ import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.home.contract.MainContract
 import com.williamlu.gankio.home.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
-import com.williamlu.toolslib.KeepAliveUtils
 import com.williamlu.toolslib.ToastUtils
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
+import android.support.design.widget.BottomSheetDialog
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import java.util.zip.Inflater
 
 /**
  * @Author: WilliamLu
@@ -67,7 +70,9 @@ class MainActivity : GankBaseActivity(), MainContract.View {
 
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            clearSubscribe()
+            val fullSheetDialog = FullSheetDialog(this)
+            fullSheetDialog.setContentView(R.layout.activity_splash)
+            fullSheetDialog.show()
         }
     }
 
