@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/layout_iv_loading"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/dp_48"
+            android:layout_height="@dimen/dp_48"
             android:indeterminateDrawable="@drawable/gif_loading" />
 
         <TextView
@@ -41,8 +41,8 @@
 
         <ImageView
             android:id="@+id/layout_empty_data_iv"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_100"
             android:background="@drawable/img_data_empty" />
 
         <TextView
@@ -66,8 +66,8 @@
 
         <ImageView
             android:id="@+id/layout_error_iv"
-            android:layout_width="140dp"
-            android:layout_height="100dp"
+            android:layout_width="@dimen/dp_140"
+            android:layout_height="@dimen/dp_100"
             android:background="@drawable/img_data_empty" />
 
         <TextView
