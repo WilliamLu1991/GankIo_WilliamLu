@@ -13,26 +13,13 @@ import java.util.concurrent.TimeUnit
  * @Date: 2018/11/20
  * @Description:
  */
-class KeepAliveUtils private constructor() {
+class KeepAliveUtils {
     private var disposable: Disposable? = null
     private var mListener: onKeepAliveListener? = null
 
     interface onKeepAliveListener {
         fun onSubscribe(disposable: Disposable)
         fun onNext(t: Long)
-    }
-
-    companion object {
-        private var INSTANCE: KeepAliveUtils? = null
-
-        fun getInstance(): KeepAliveUtils {
-            synchronized(KeepAliveUtils::class.java) {
-                if (INSTANCE == null) {
-                    INSTANCE = KeepAliveUtils()
-                }
-            }
-            return INSTANCE!!
-        }
     }
 
     /**

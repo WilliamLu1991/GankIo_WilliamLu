@@ -21,7 +21,7 @@ class SplashActivity : GankBaseActivity() {
 
     override fun initView() {
 
-        RxCountDownUtils.getInstance().countdown(5, object : RxCountDownUtils.onRxCountDownListener {
+        RxCountDownUtils().countdown(5, object : RxCountDownUtils.onRxCountDownListener {
             override fun onSubscribe(disposable: Disposable) {
                 addSubscribe(disposable)
             }

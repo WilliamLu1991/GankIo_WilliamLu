@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.support.multidex.MultiDex
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
+import com.squareup.leakcanary.LeakCanary
 import com.williamlu.toolslib.GlobalCache
 import com.williamlu.toolslib.NetworkChangedReceiver
 import com.williamlu.toolslib.ToastUtils
@@ -26,12 +27,22 @@ class GankIoApplation : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initLeakCanary()
         initGlobalCache()
         initMultiDex()
         //初始化日志
         initLogger()
         //初始化网络监听
         initNetwork()
+    }
+
+    private fun initLeakCanary() {
+        if (BuildConfig.DEBUG) {
+            if (LeakCanary.isInAnalyzerProcess(this)) {
+                return
+            }
+            LeakCanary.install(this)
+        }
     }
 
     private fun initLogger() {

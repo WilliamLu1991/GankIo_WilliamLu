@@ -18,7 +18,7 @@ ext {
             butterknifeSdkVersion   : "9.0.0-rc2",
             rxlifecycle2SdkVersion  : "2.1.0",
             espressoSdkVersion      : "3.0.2",
-            canarySdkVersion        : "1.5.1"
+            leakcanarySdkVersion    : "1.6.2"
     ]
 
     dependencies = [
@@ -101,8 +101,10 @@ ext {
             "espresso-intents"          : "com.android.support.test.espresso:espresso-intents:${version["espressoSdkVersion"]}",
             "mockito-core"              : "org.mockito:mockito-core:1.+",
             "timber"                    : "com.jakewharton.timber:timber:4.5.1",
-            "canary-debug"              : "com.squareup.leakcanary:leakcanary-android:${version["canarySdkVersion"]}",
-            "canary-release"            : "com.squareup.leakcanary:leakcanary-android-no-op:${version["canarySdkVersion"]}",
+            "leakcanary-debug"          : "com.squareup.leakcanary:leakcanary-android:${version["leakcanarySdkVersion"]}",
+            "leakcanary-release"        : "com.squareup.leakcanary:leakcanary-android-no-op:${version["leakcanarySdkVersion"]}",
+            // Optional, if you use support library fragments:
+            "leakcanary-fragment"       : "com.squareup.leakcanary:leakcanary-support-fragment:${version["leakcanarySdkVersion"]}",
             "umeng-analytics"           : "com.umeng.analytics:analytics:latest.integration",
             "qrcode"                    : "com.github.SumiMakito:AwesomeQRCode:latest.integration"
 
