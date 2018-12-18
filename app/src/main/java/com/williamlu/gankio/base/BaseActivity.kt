@@ -76,7 +76,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             setContentView(getContentViewLayoutID())
             //是否要检查权限
             if (isCheckPermission()) {
-                PermissionsUtils.getInstance().chekPermissions(this, mPermissions!!, permissionsResult)
+                PermissionsUtils.getInstance().checkAndRequestPermissions(this, mPermissions!!, permissionsResult)
             } else {
                 initPresenter()
                 initView()
@@ -159,6 +159,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     //创建监听权限的接口对象
     var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
+
         override fun passPermissions() {
             //权限通过
             initPresenter()

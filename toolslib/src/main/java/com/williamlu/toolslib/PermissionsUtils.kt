@@ -24,7 +24,7 @@ class PermissionsUtils private constructor() {
      */
     private var mPermissionDialog: AlertDialog? = null
 
-    fun chekPermissions(context: Activity, permissions: Array<String>, @NonNull permissionsResult: IPermissionsResult) {
+    fun checkAndRequestPermissions(context: Activity, permissions: Array<String>, @NonNull permissionsResult: IPermissionsResult) {
         mPermissionsResult = permissionsResult
 
         if (Build.VERSION.SDK_INT < 23) { //6.0才用动态权限
@@ -47,8 +47,6 @@ class PermissionsUtils private constructor() {
             permissionsResult.passPermissions()
             return
         }
-
-
     }
 
     //请求权限后回调的方法
