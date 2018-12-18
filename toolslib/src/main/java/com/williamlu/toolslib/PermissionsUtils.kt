@@ -28,7 +28,7 @@ class PermissionsUtils private constructor() {
         mPermissionsResult = permissionsResult
 
         if (Build.VERSION.SDK_INT < 23) { //6.0才用动态权限
-            permissionsResult.passPermissons()
+            permissionsResult.passPermissions()
             return
         }
         //创建一个mPermissionList，逐个判断哪些权限未授予，未授予的权限存储到mPerrrmissionList中
@@ -44,7 +44,7 @@ class PermissionsUtils private constructor() {
             ActivityCompat.requestPermissions(context, permissions, mRequestCode)
         } else {
             //说明权限都已经通过，可以做你想做的事情去
-            permissionsResult.passPermissons()
+            permissionsResult.passPermissions()
             return
         }
 
@@ -68,11 +68,11 @@ class PermissionsUtils private constructor() {
                 if (showSystemSetting) {
                     showSystemPermissionsSettingDialog(context) //跳转到系统设置权限页面，或者直接关闭页面，不让他继续访问
                 } else {
-                    mPermissionsResult!!.forbitPermissons()
+                    mPermissionsResult!!.forbidPermissions()
                 }
             } else {
                 //全部权限通过，可以进行下一步操作
-                mPermissionsResult!!.passPermissons()
+                mPermissionsResult!!.passPermissions()
             }
         }
 
@@ -85,12 +85,12 @@ class PermissionsUtils private constructor() {
                 val packageURI = Uri.parse("package:" + context.packageName)
                 val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, packageURI)
                 context.startActivity(intent)
-                //context.finish()
+                context.finish()
             }.setNegativeButton("取消") { dialog, which ->
                 //关闭页面或者做其他操作
                 cancelPermissionDialog()
                 //mContext.finish();
-                mPermissionsResult!!.forbitPermissons()
+                mPermissionsResult!!.forbidPermissions()
             }.create()
         }
         mPermissionDialog!!.show()
@@ -106,9 +106,9 @@ class PermissionsUtils private constructor() {
     }
 
     interface IPermissionsResult {
-        fun passPermissons()
+        fun passPermissions()
 
-        fun forbitPermissons()
+        fun forbidPermissions()
     }
 
     companion object {

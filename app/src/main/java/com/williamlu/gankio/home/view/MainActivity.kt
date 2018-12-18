@@ -63,7 +63,7 @@ class MainActivity : GankBaseActivity(), MainContract.View {
     }
 
     override fun initView() {
-        mBaseToolBarHelper!!.setBgImg(R.drawable.ic_personal, -1)
+        mBaseToolBarHelper!!.showLeftView().setBgImg(R.drawable.ic_personal, -1)
         showLoadingView()
         mMainPresenter!!.getData()
         mSwipeRl.setOnRefreshListener {

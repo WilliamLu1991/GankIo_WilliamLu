@@ -103,13 +103,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        if (isCheckPermission()) {
-            PermissionsUtils.getInstance().chekPermissions(this, mPermissions!!, permissionsResult)
-        }
-    }
-
     override fun onDestroy() {
         super.onDestroy()
         clearSubscribe()
@@ -156,6 +149,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     /**
      * 检查权限及申请
+     * 通过 mPermissions 设置要申请的权限
      */
     protected abstract fun checkPermission(): Boolean
 
@@ -165,14 +159,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     //创建监听权限的接口对象
     var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
-        override fun passPermissons() {
+        override fun passPermissions() {
             //权限通过
             initPresenter()
             initView()
             initListener()
         }
 
-        override fun forbitPermissons() {
+        override fun forbidPermissions() {
             //权限不通过
             finish()
         }
