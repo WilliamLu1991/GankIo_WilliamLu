@@ -10,7 +10,8 @@
         android:id="@+id/splash_iv_bg"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/me" />
+        android:background="@drawable/me"
+        android:scaleType="fitXY" />
 
     <TextView
         android:id="@+id/splash_tv_time"

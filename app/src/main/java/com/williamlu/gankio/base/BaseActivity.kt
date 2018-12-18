@@ -96,6 +96,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             setSupportActionBar(mBaseToolbar)
             mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
+        if (mSwipeRl != null) {
+            mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
+        }
     }
 
     /**
@@ -119,6 +122,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             mCompositeDisposable = CompositeDisposable()
         }
         mCompositeDisposable!!.add(disposable)
+    }
+
+    protected fun removeSubscribe(disposable: Disposable?) {
+        if (disposable == null) return
+        if (mCompositeDisposable != null) {
+            mCompositeDisposable!!.remove(disposable)
+        }
     }
 
     protected fun clearSubscribe() {
