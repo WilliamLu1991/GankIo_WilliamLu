@@ -19,7 +19,7 @@ class SplashActivity : GankBaseActivity() {
 
     }
 
-    override fun initView(savedInstanceState: Bundle?) {
+    override fun initView() {
 
         RxCountDownUtils.getInstance().countdown(5, object : RxCountDownUtils.onRxCountDownListener {
             override fun onSubscribe(disposable: Disposable) {

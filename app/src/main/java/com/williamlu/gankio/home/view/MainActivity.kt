@@ -1,5 +1,6 @@
 package com.williamlu.gankio.home.view
 
+import android.Manifest
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
@@ -55,7 +56,13 @@ class MainActivity : GankBaseActivity(), MainContract.View {
         }
     }
 
-    override fun initView(savedInstanceState: Bundle?) {
+    override fun checkPermission(): Boolean {
+        mPermissions = arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+        return true
+    }
+
+    override fun initView() {
         mBaseToolBarHelper!!.setBgImg(R.drawable.ic_personal, -1)
         showLoadingView()
         mMainPresenter!!.getData()

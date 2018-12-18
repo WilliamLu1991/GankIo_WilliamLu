@@ -1,8 +1,5 @@
 package com.williamlu.gankio.base
 
-import android.Manifest
-import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Dialog
 import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
@@ -13,14 +10,13 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
-import com.tbruyelle.rxpermissions2.RxPermissions
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
+import com.williamlu.toolslib.PermissionsUtils
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
-import com.williamlu.widgetlib.dialog.PermissionDialog
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -44,6 +40,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
     protected var mCompositeDisposable: CompositeDisposable? = null
+    protected var mPermissions: Array<String>? = null
 
     /**
      * 获取布局ID
@@ -58,7 +55,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     /**
      * 初始化布局以及View控件
      */
-    protected abstract fun initView(savedInstanceState: Bundle?)
+    protected abstract fun initView()
 
     /**
      * 初始化监听事件
@@ -77,9 +74,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID())
-            initPresenter()
-            initView(savedInstanceState)
-            initListener()
+            //是否要检查权限
+            if (isCheckPermission()) {
+                PermissionsUtils.getInstance().chekPermissions(this, mPermissions!!, permissionsResult)
+            } else {
+                initPresenter()
+                initView()
+                initListener()
+            }
         }
     }
 
@@ -99,6 +101,20 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         if (mSwipeRl != null) {
             mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (isCheckPermission()) {
+            PermissionsUtils.getInstance().chekPermissions(this, mPermissions!!, permissionsResult)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        clearSubscribe()
+        mActivityCacheManager!!.removeActivity(this)
+        EventBus.getDefault().unregister(this)
     }
 
     /**
@@ -138,26 +154,38 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        clearSubscribe()
-        mActivityCacheManager!!.removeActivity(this)
-        EventBus.getDefault().unregister(this)
+    /**
+     * 检查权限及申请
+     */
+    protected abstract fun checkPermission(): Boolean
+
+    protected fun isCheckPermission(): Boolean {
+        return checkPermission()
+    }
+
+    //创建监听权限的接口对象
+    var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
+        override fun passPermissons() {
+            //权限通过
+            initPresenter()
+            initView()
+            initListener()
+        }
+
+        override fun forbitPermissons() {
+            //权限不通过
+            finish()
+        }
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        PermissionsUtils.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults)
     }
 
     /**
-     * 检查权限 及申请
+     * 基础dialog及view的统一管理
      */
-    @SuppressLint("CheckResult")
-    fun checkPermission(activity: Activity) {
-        val rxPermissions = RxPermissions(this)
-        rxPermissions.request(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS, Manifest.permission.BLUETOOTH).subscribe({ granted ->
-            if (!granted) {
-                PermissionDialog.showMissingPermissionDialog(activity)
-            }
-        }, { throwable -> throwable.printStackTrace() })
-    }
-
     override fun showLoadingDialog() {
         mLoadingDialog!!.show()
     }

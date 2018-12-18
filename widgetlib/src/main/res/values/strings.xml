@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">WidgetLib</string>
-    <string name="lack_permission">当前应用缺少必要权限。\n\n请单击\"设置\"-\"权限\"，打开所需权限。\n\n最后，点击两次后退按钮,即可返回。</string>
 
     <string name="msg_data_empty">暂无相关数据</string>
     <string name="msg_loading">加载中...</string>

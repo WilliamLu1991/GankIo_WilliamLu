@@ -6,5 +6,7 @@ package com.williamlu.gankio.base
  * @Description:
  */
 abstract class GankBaseActivity : BaseActivity(){
-
+    override fun checkPermission(): Boolean {
+        return false
+    }
 }
