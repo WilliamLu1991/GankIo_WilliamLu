@@ -157,7 +157,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         return checkPermission()
     }
 
-    //创建监听权限的接口对象
+    //监听权限的回调
     var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
 
         override fun passPermissions() {
