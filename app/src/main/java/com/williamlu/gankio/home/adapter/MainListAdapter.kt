@@ -1,10 +1,10 @@
-package com.williamlu.gankio.home.view
+package com.williamlu.gankio.home.adapter
 
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.williamlu.gankio.R
-import com.williamlu.gankio.home.model.Movie
+import com.williamlu.gankio.model.Movie
 
 /**
  * @Author: WilliamLu

@@ -2,7 +2,7 @@ package com.williamlu.gankio.api.douban
 
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.datalib.bean.BaseBeanN
-import com.williamlu.gankio.home.model.Movie
+import com.williamlu.gankio.model.Movie
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Query

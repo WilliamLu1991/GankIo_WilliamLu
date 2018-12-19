@@ -1,15 +1,15 @@
 package com.williamlu.gankio.home.view
 
 import android.Manifest
-import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.KeyEvent
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
+import com.williamlu.gankio.home.adapter.MainListAdapter
 import com.williamlu.gankio.home.contract.MainContract
-import com.williamlu.gankio.home.model.Movie
+import com.williamlu.gankio.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.FullSheetDialog

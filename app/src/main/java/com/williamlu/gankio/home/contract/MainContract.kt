@@ -1,6 +1,6 @@
 package com.williamlu.gankio.home.contract
 
-import com.williamlu.gankio.home.model.Movie
+import com.williamlu.gankio.model.Movie
 import com.williamlu.gankio.base.BaseLoadView
 import com.williamlu.gankio.home.presenter.MainPresenter
 

@@ -1,10 +1,9 @@
 package com.williamlu.gankio.home.presenter
 
-import android.support.v4.widget.SwipeRefreshLayout
 import com.williamlu.gankio.api.douban.DouBanMovieService
 import com.williamlu.datalib.base.ApiObserver
 import com.williamlu.datalib.bean.BaseBean
-import com.williamlu.gankio.home.model.Movie
+import com.williamlu.gankio.model.Movie
 import com.williamlu.gankio.home.contract.MainContract
 
 /**

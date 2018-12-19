@@ -39,7 +39,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mActivityCacheManager: ActivityCacheManager? = null
     private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
-    protected var mCompositeDisposable: CompositeDisposable? = null
+    private var mCompositeDisposable: CompositeDisposable? = null
     protected var mPermissions: Array<String>? = null
 
     /**
@@ -159,7 +159,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
 
     //监听权限的回调
     var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
-
         override fun passPermissions() {
             //权限通过
             initPresenter()

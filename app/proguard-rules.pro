@@ -119,7 +119,6 @@
 -dontwarn com.google.gson.**
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.** { *; }
-
 -keep public class * implements java.io.Serializable {*;}
 
 -ignorewarnings
@@ -141,4 +140,6 @@
   **[] $VALUES;
   public *;
 }
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+
+#实体类
+-keep class com.williamlu.gankio.model.**{*;}
