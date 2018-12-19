@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit
  * @Description: 倒计时工具类
  */
 class RxCountDownUtils {
-    private var sDisposable: Disposable? = null
+    private var mDisposable: Disposable? = null
     private var mListener: onRxCountDownListener? = null
 
     interface onRxCountDownListener {
@@ -36,7 +36,7 @@ class RxCountDownUtils {
             mListener!!.onBefore()
         }.subscribe(object : io.reactivex.Observer<Int> {
             override fun onSubscribe(d: Disposable) {
-                sDisposable = d
+                mDisposable = d
                 mListener!!.onSubscribe(d)
             }
 
@@ -58,9 +58,9 @@ class RxCountDownUtils {
     }
 
     fun stopCountdown() {
-        if (sDisposable != null) {
-            sDisposable!!.dispose()
-            sDisposable = null
+        if (mDisposable != null) {
+            mDisposable!!.dispose()
+            mDisposable = null
         }
     }
 }
