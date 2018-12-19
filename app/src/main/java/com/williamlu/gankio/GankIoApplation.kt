@@ -7,6 +7,7 @@ import android.support.multidex.MultiDex
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.squareup.leakcanary.LeakCanary
+import com.tencent.bugly.Bugly
 import com.williamlu.toolslib.GlobalCache
 import com.williamlu.toolslib.NetworkChangedReceiver
 import com.williamlu.toolslib.ToastUtils
@@ -17,7 +18,6 @@ import com.williamlu.toolslib.ToastUtils
  * @Description:
  */
 class GankIoApplation : Application() {
-
     companion object {
         private var mReceiver: NetworkChangedReceiver? = null
         fun offNetworkReceiver() {
@@ -27,6 +27,7 @@ class GankIoApplation : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        initBuggly()
         initLeakCanary()
         initGlobalCache()
         initMultiDex()
@@ -34,6 +35,12 @@ class GankIoApplation : Application() {
         initLogger()
         //初始化网络监听
         initNetwork()
+    }
+
+    private fun initBuggly() {
+        // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
+        // 调试时，将第三个参数改为true
+        Bugly.init(this, AppConstant.ConfigConstant.BUGLY_APPID, BuildConfig.DEBUG)
     }
 
     private fun initLeakCanary() {

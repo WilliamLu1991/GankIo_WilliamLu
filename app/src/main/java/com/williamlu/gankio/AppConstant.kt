@@ -22,6 +22,10 @@ class AppConstant {
         const val URL_BASE_TEST = "https://api.douban.com/v2/"
     }
 
+    object ConfigConstant {
+        const val BUGLY_APPID = "c7a1462f22"
+    }
+
     object ToastConstant {
         const val EXIT_APP = "再次点击将退出应用！"
         const val NO_INPUT_PHONE = "您还未填写手机号码哦～！"
