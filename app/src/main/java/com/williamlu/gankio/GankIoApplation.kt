@@ -5,11 +5,13 @@ import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.support.multidex.MultiDex
+import com.meituan.android.walle.WalleChannelReader
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
+import com.tencent.bugly.beta.tinker.TinkerManager.getApplication
 import com.williamlu.toolslib.GlobalCache
 import com.williamlu.toolslib.NetworkChangedReceiver
 import com.williamlu.toolslib.ToastUtils
@@ -42,6 +44,8 @@ class GankIoApplation : Application() {
     private fun initBuggly() {
         // 这里实现SDK初始化，appId替换成你的在Bugly平台申请的appId
         // 调试时，将第三个参数改为true
+        val channel = WalleChannelReader.getChannel(getApplication())
+        Bugly.setAppChannel(getApplication(), channel)
         Bugly.init(this, AppConstant.ConfigConstant.BUGLY_APPID, BuildConfig.DEBUG)
     }
 

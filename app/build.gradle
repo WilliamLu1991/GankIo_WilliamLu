@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply from: 'tinker-support.gradle'
+apply from: 'multiple-channel.gradle'
+
 
 android {
     signingConfigs {
@@ -57,7 +59,7 @@ android {
         }
     }
 
-    productFlavors {
+    /*productFlavors {
         official {}
         xiaomi {}
         qh360 {}
@@ -68,11 +70,11 @@ android {
         productFlavors.all {
             flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
         }
-    }
+    }*/
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "GankIo-${buildType.name}_V${defaultConfig.versionName}_Build${defaultConfig.versionCode}_${productFlavors.name}.apk"
+            outputFileName = "GankIo-V${defaultConfig.versionName}-Build${defaultConfig.versionCode}-${buildType.name}.apk"
         }
     }
 
@@ -102,5 +104,6 @@ dependencies {
     api rootProject.ext.dependencies["bugly-crashreport"]
     api rootProject.ext.dependencies["bugly-tinker"]
     api rootProject.ext.dependencies["bugly-nativecrashreport"]
+    api rootProject.ext.dependencies["walle"]
 
 }

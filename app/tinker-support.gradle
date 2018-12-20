@@ -5,7 +5,7 @@ def bakPath = file("${buildDir}/bakApk/")
 /**
  * 此处填写每次构建生成的基准包目录
  */
-def baseApkDir = "app-1.0.0"
+def baseApkDir = "app-1220-17-01-23"
 
 /**
  * 对于插件各参数的详细解析请参考
@@ -35,6 +35,7 @@ tinkerSupport {
 
     // 构建基准包和补丁包都要指定不同的tinkerId，并且必须保证唯一性，示例：1.0.0-base，1.0.0-patch
     tinkerId = "1.0.0-base"
+    //tinkerId = "1.0.0-patch"
 
     // 构建多渠道补丁时使用
      buildAllFlavorsDir = "${bakPath}/${baseApkDir}"
@@ -56,7 +57,7 @@ tinkerSupport {
  * https://github.com/Tencent/tinker/wiki/Tinker-%E6%8E%A5%E5%85%A5%E6%8C%87%E5%8D%97
  */
 tinkerPatch {
-    //oldApk ="${bakPath}/${appName}/app-release.apk"
+    //oldApk ="${bakPath}/${baseApkDir}/${apkName}.apk"
     ignoreWarning = false
     useSign = true
     dex {
