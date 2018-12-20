@@ -105,5 +105,6 @@ dependencies {
     api rootProject.ext.dependencies["bugly-tinker"]
     api rootProject.ext.dependencies["bugly-nativecrashreport"]
     api rootProject.ext.dependencies["walle"]
+    api rootProject.ext.dependencies["umeng-analytics"]
 
 }

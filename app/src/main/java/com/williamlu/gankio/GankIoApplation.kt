@@ -12,6 +12,7 @@ import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.tencent.bugly.beta.tinker.TinkerManager.getApplication
+import com.umeng.analytics.MobclickAgent
 import com.williamlu.toolslib.GlobalCache
 import com.williamlu.toolslib.NetworkChangedReceiver
 import com.williamlu.toolslib.ToastUtils
@@ -32,6 +33,7 @@ class GankIoApplation : Application() {
     override fun onCreate() {
         super.onCreate()
         initBuggly()
+        initUmeng()
         initLeakCanary()
         initGlobalCache()
         initMultiDex()
@@ -39,6 +41,12 @@ class GankIoApplation : Application() {
         initLogger()
         //初始化网络监听
         initNetwork()
+    }
+
+    private fun initUmeng() {
+        val channel = WalleChannelReader.getChannel(getApplication())
+        val umAnalyticsConfig = MobclickAgent.UMAnalyticsConfig(this, AppConstant.ConfigConstant.UMENG_APPKEY, channel)
+        MobclickAgent.startWithConfigure(umAnalyticsConfig)
     }
 
     private fun initBuggly() {

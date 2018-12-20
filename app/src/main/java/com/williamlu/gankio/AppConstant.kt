@@ -3,10 +3,9 @@ package com.williamlu.gankio
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class AppConstant {
-
     companion object {
         fun getBaseUrl(): String {
             return if (BuildConfig.DEBUG) {
@@ -24,6 +23,7 @@ class AppConstant {
 
     object ConfigConstant {
         const val BUGLY_APPID = "c7a1462f22"
+        const val UMENG_APPKEY = "5c1ba8a0f1f556ace1000513"
     }
 
     object ToastConstant {

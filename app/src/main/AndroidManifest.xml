@@ -35,8 +35,11 @@
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
 
-        <!-- 多渠道名称配置 -->
+        <!-- 友盟配置 -->
         <!--<meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5c1ba8a0f1f556ace1000513" />
+        <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />-->
 

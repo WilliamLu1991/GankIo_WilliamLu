@@ -120,8 +120,6 @@
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.** { *; }
 -keep public class * implements java.io.Serializable {*;}
-#实体类
--keep class com.williamlu.gankio.model.**{*;}
 
 -ignorewarnings
 
@@ -148,3 +146,14 @@
 -keep public class com.tencent.bugly.**{*;}
 -dontwarn com.tencent.tinker.**
 -keep class com.tencent.tinker.** { *; }
+
+#实体类
+-keep class com.williamlu.gankio.model.**{*;}
+
+#友盟混淆
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keep public class com.williamlu.gankio.R$*{
+public static final int *;
+}
