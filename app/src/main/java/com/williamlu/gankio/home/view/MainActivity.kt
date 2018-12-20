@@ -73,10 +73,9 @@ class MainActivity : GankBaseActivity(), MainContract.View {
 
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            /*val fullSheetDialog = FullSheetDialog(this)
+            val fullSheetDialog = FullSheetDialog(this)
             fullSheetDialog.setContentView(R.layout.activity_splash)
-            fullSheetDialog.show()*/
-            ToastUtils.showToast("热更新集成成功！")
+            fullSheetDialog.show()
         }
     }
 
