@@ -20,7 +20,6 @@ class SplashActivity : GankBaseActivity() {
     }
 
     override fun initView() {
-
         RxCountDownUtils().countdown(5, object : RxCountDownUtils.onRxCountDownListener {
             override fun onSubscribe(disposable: Disposable) {
                 addSubscribe(disposable)
@@ -35,7 +34,7 @@ class SplashActivity : GankBaseActivity() {
             }
 
             override fun onComplete() {
-                startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+                startActivity(Intent(baseContext, MainActivity::class.java))
                 finish()
             }
 
@@ -44,7 +43,7 @@ class SplashActivity : GankBaseActivity() {
 
     override fun initListener() {
         splash_tv_time.setOnClickListener {
-            startActivity(Intent(this@SplashActivity, MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
