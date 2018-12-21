@@ -8,4 +8,8 @@ import com.tencent.tinker.loader.shareutil.ShareConstants
  * @Data: 2018/12/19
  * @Description:
  */
-class MyTinkerApplation : TinkerApplication(ShareConstants.TINKER_ENABLE_ALL, "com.williamlu.gankio.MyTinkerApplationLike", "com.tencent.tinker.loader.TinkerLoader", false)
+class MyTinkerApplation : TinkerApplication(
+        ShareConstants.TINKER_ENABLE_ALL,
+        AppConstant.ConfigConstant.TINKER_NAME,
+        "com.tencent.tinker.loader.TinkerLoader",
+        false)

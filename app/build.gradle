@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android-extensions'
 apply from: 'tinker-support.gradle'
 apply from: 'multiple-channel.gradle'
 
-
 android {
     signingConfigs {
         release {
