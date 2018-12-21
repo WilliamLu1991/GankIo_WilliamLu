@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 apply from: 'tinker-support.gradle'
 apply from: 'multiple-channel.gradle'
 
@@ -100,6 +101,8 @@ dependencies {
     api rootProject.ext.dependencies["BRVAH"]
     api rootProject.ext.dependencies["cardview-v7"]
     api rootProject.ext.dependencies["glide"]
+    kapt rootProject.ext.dependencies["glide-compiler"]
+    api rootProject.ext.dependencies["glide-loader-okhttp3"]
     api rootProject.ext.dependencies["bugly-crashreport"]
     api rootProject.ext.dependencies["bugly-tinker"]
     api rootProject.ext.dependencies["bugly-nativecrashreport"]
