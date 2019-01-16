@@ -1,6 +1,7 @@
 package com.williamlu.gankio.api.contract
 
 import com.williamlu.datalib.bean.BaseBean
+import com.williamlu.gankio.model.ClassifyDataBean
 import io.reactivex.Observable
 
 /**
@@ -10,6 +11,6 @@ import io.reactivex.Observable
  */
 interface GankIoIData {
 
-    fun getClassifyData(type: String, pagesize: String, pageindex: String): Observable<BaseBean<*>>
+    fun getClassifyData(type: String, pagesize: String, pageindex: String): Observable<BaseBean<List<ClassifyDataBean>>>
 
 }

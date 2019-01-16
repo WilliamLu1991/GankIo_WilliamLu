@@ -6,6 +6,6 @@ package com.williamlu.datalib.bean
  * @Description:
  */
 data class ApiExceptionEvent(
-    var code: Int,
-    var msg: String
+        var errorCode: Int,
+        var errorMsg: String
 )

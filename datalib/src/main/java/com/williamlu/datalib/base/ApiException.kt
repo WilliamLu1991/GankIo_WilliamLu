@@ -5,4 +5,7 @@ package com.williamlu.datalib.base
  * @Date: 2018/11/20
  * @Description:
  */
-class ApiException(var errorCode: Int, errmsg: String) : IllegalArgumentException(errmsg)
+class ApiException(errorCode: Int, errmsg: String) : IllegalArgumentException() {
+    var errorCode: Int = errorCode
+    var errmsg: String = errmsg
+}

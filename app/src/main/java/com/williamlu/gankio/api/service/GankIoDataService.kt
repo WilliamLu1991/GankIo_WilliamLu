@@ -3,6 +3,7 @@ package com.williamlu.gankio.api.service
 import com.williamlu.datalib.base.DefaultTransformer
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.gankio.api.contract.GankIoIData
+import com.williamlu.gankio.model.ClassifyDataBean
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -21,19 +22,17 @@ class GankIoDataService private constructor() : BaseApiService(), GankIoIData {
         fun getInstance(): GankIoDataService {
             synchronized(GankIoDataService::class.java) {
                 if (INSTANCE == null) {
-                    INSTANCE =
-                            GankIoDataService()
+                    INSTANCE = GankIoDataService()
                 }
             }
             return INSTANCE!!
         }
     }
 
-    override fun getClassifyData(type: String, pagesize: String, pageindex: String): Observable<BaseBean<*>> {
+    override fun getClassifyData(type: String, pagesize: String, pageindex: String): Observable<BaseBean<List<ClassifyDataBean>>> {
 
-        return mGankIoApiService
-                .getClassifyData(type, pagesize, pageindex)
-                .compose(DefaultTransformer<BaseBean<*>>())
+        return mGankIoApiService.getClassifyData(type, pagesize, pageindex)
+                .compose(DefaultTransformer<BaseBean<List<ClassifyDataBean>>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
     }

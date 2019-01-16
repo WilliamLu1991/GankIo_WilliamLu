@@ -95,7 +95,7 @@ class GankIoApplation : Application() {
     private fun initNetwork() {
         mReceiver = NetworkChangedReceiver(object : NetworkChangedReceiver.onChangedListener {
             override fun onNetworkConnected(msg: String) {
-                //ToastUtils.showToast(msg)
+                //ToastUtils.showToast(errorMsg)
             }
 
             override fun onNetworkDisconnected(msg: String) {

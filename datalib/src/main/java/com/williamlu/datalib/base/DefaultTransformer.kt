@@ -16,13 +16,16 @@ class DefaultTransformer<T> : ObservableTransformer<T, T> {
 
     override fun apply(tObservable: Observable<T>): Observable<T> {
         return tObservable.subscribeOn(Schedulers.io())
-            .unsubscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .map { t ->
-                if ((t as BaseBean<T>).errorCode != DataConstant.ConfigConstant.SUCCESS_SERVER_CODE) {
-                    throw ApiException((t as BaseBean<T>).errorCode!!, (t as BaseBean<T>).errmsg)
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { t ->
+                    if ((t as BaseBean<T>).error) {
+                        throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
+                    }
+                    if ((t as BaseBean<T>).code != DataConstant.ConfigConstant.SUCCESS_SERVER_CODE) {
+                        throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
+                    }
+                    t
                 }
-                t
-            }
     }
 }

@@ -1,5 +1,6 @@
 package com.williamlu.datalib.bean
 
+import com.williamlu.datalib.DataConstant
 import java.io.Serializable
 
 /**
@@ -8,7 +9,10 @@ import java.io.Serializable
  * @Description:
  */
 class BaseBean<T> : Serializable {
-    var errorCode = 10000
-    var errmsg = ""
+    var code = DataConstant.ConfigConstant.SUCCESS_SERVER_CODE
+    var msg = ""
     var data: T? = null
+
+    var error = false
+    var results: T? = null
 }
