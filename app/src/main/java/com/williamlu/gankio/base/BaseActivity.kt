@@ -10,6 +10,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
+import com.williamlu.datalib.bean.ApiExceptionEvent
+import com.williamlu.datalib.bean.ServerExceptionEvent
 import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
@@ -133,10 +135,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             GankIoApplation.offNetworkReceiver()
             ActivityCacheManager.getInstance().appExit(this)
         } else if (o is ApiExceptionEvent) {
-            if (o.code == AppConstant.ErrorCodeConstant.ERROR_CODE_10009) {
-                mSpUtils.put(AppConstant.SpConstant.USER_IS_LOGIN, false)
-                EventBus.getDefault().post(LoginOutEvent(context!!))
-            }
+            //统一处理后台返回的错误码
+
         } else if (o is ServerExceptionEvent) {
             ToastUtils.showToast(o.msg)
         }

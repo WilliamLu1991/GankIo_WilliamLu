@@ -8,7 +8,6 @@ import android.support.multidex.MultiDex
 import com.meituan.android.walle.WalleChannelReader
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
-import com.squareup.leakcanary.LeakCanary
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.beta.Beta
 import com.tencent.bugly.beta.tinker.TinkerManager.getApplication
@@ -34,7 +33,7 @@ class GankIoApplation : Application() {
         super.onCreate()
         initBuggly()
         initUmeng()
-        initLeakCanary()
+        //initLeakCanary()
         initGlobalCache()
         initMultiDex()
         //初始化日志
@@ -66,12 +65,12 @@ class GankIoApplation : Application() {
     }
 
     private fun initLeakCanary() {
-        if (BuildConfig.DEBUG) {
+        /*if (BuildConfig.DEBUG) {
             if (LeakCanary.isInAnalyzerProcess(this)) {
                 return
             }
             LeakCanary.install(this)
-        }
+        }*/
     }
 
     private fun initLogger() {

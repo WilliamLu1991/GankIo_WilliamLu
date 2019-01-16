@@ -3,8 +3,7 @@ package com.williamlu.gankio.api.douban
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.gankio.model.Movie
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 /**
  * @Author: WilliamLu
@@ -12,6 +11,7 @@ import retrofit2.http.Query
  * @Description: 
  */
 interface DouBanIApi {
+
     /**
      * 获取top250的影片信息
      */
@@ -22,30 +22,32 @@ interface DouBanIApi {
      * 北美票房榜
      */
     @GET("movie/us_box")
-    fun getMovieUSBox(): Observable<BaseBeanN>
+    fun getMovieUSBox(@QueryMap map: Map<String, String>): Observable<BaseBean<*>>
 
     /**
      * 口碑榜
      */
-    @GET("movie/weekly")
-    fun getMovieWeekly(): Observable<BaseBeanN>
+    @FormUrlEncoded
+    @POST("movie/weekly")
+    fun getMovieWeekly(@Field("start") start: Int): Observable<BaseBean<*>>
 
     /**
      * 新片榜
      */
-    @GET("movie/new_movies")
-    fun getNewMovies(): Observable<BaseBeanN>
+    @FormUrlEncoded
+    @POST("movie/new_movies")
+    fun getNewMovies(@FieldMap map: Map<String, String>): Observable<BaseBean<*>>
 
     /**
      * 正在上映 default: 北京
      */
-    @GET("movie/new_movies")
-    fun getMovieInTheaters(@Query("city") city: String): Observable<BaseBeanN>
+    @GET("movie/new_movies/{start}")
+    fun getMovieInTheaters(@Path("start") start: Int, @Query("city") city: String): Observable<BaseBean<*>>
 
     /**
      * 即将上映
      */
     @GET("movie/coming_soon")
-    fun getMovieComingSoon(@Query("start") start: Int, @Query("count") count: Int): Observable<BaseBeanN>
+    fun getMovieComingSoon(@Query("start") start: Int, @Query("count") count: Int): Observable<BaseBean<*>>
 
 }
