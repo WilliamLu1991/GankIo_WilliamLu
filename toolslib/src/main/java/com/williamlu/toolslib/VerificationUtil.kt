@@ -17,7 +17,7 @@ object VerificationUtil {
     // 判断手机号码是否有效
     fun isValidTelNumber(telNumber: String): Boolean {
         if (!TextUtils.isEmpty(telNumber)) {
-            val regex = "(\\+\\d+)?1[345678]\\d{9}$"
+            val regex = "(\\+\\d+)?1[3456789]\\d{9}$"
             return Pattern.matches(regex, telNumber)
         }
 

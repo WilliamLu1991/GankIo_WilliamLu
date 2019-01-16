@@ -9,8 +9,8 @@ import com.williamlu.gankio.base.GankBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.home.adapter.MainListAdapter
 import com.williamlu.gankio.home.contract.MainContract
-import com.williamlu.gankio.model.Movie
 import com.williamlu.gankio.home.presenter.MainPresenter
+import com.williamlu.gankio.model.Movie
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.FullSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
@@ -63,7 +63,7 @@ class MainActivity : GankBaseActivity(), MainContract.View {
     }
 
     override fun initView() {
-        mBaseToolBarHelper!!.showLeftView().setBgImg(R.drawable.ic_personal, -1)
+        mBaseToolBarHelper!!.showLeftView().setBgImg(R.drawable.lib_ic_personal, -1)
         showLoadingView()
         mMainPresenter!!.getData()
         mSwipeRl.setOnRefreshListener {

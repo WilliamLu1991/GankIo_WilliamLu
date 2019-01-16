@@ -19,6 +19,7 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
     private var mToolbarIbLeft: ImageButton? = null
     private var mToolbarIbRight1: ImageButton? = null
     private var mToolbarIbRight2: ImageButton? = null
+    private var mToolbarTvRight: TextView? = null
     private var mToolbarTvTitle: TextView? = null
     private var mToolbarLlSearch: LinearLayout? = null
     private var mToolbarEtSearchContent: EditText? = null
@@ -30,6 +31,7 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
             mToolbarIbLeft = mBaseToolbar!!.findViewById<ImageButton>(R.id.toolbar_ib_left)
             mToolbarIbRight1 = mBaseToolbar!!.findViewById<ImageButton>(R.id.toolbar_ib_right1)
             mToolbarIbRight2 = mBaseToolbar!!.findViewById<ImageButton>(R.id.toolbar_ib_right2)
+            mToolbarTvRight = mBaseToolbar!!.findViewById<TextView>(R.id.toolbar_tv_right)
             mToolbarTvTitle = mBaseToolbar!!.findViewById<TextView>(R.id.toolbar_tv_title)
             mToolbarLlSearch = mBaseToolbar!!.findViewById<LinearLayout>(R.id.toolbar_ll_search)
             mToolbarEtSearchContent = mBaseToolbar!!.findViewById<EditText>(R.id.toolbar_et_search_content)
@@ -65,9 +67,15 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
         return this
     }
 
+    fun showRightTvView(): BaseToolBarHelper {
+        mToolbarTvRight!!.visibility = View.VISIBLE
+        return this
+    }
+
     fun showSearchView(): BaseToolBarHelper {
         mToolbarIbRight1!!.visibility = View.GONE
         mToolbarIbRight2!!.visibility = View.GONE
+        mToolbarTvRight!!.visibility = View.GONE
         mToolbarLlSearch!!.visibility = View.VISIBLE
         mToolbarEtSearchContent!!.visibility = View.VISIBLE
         mToolbarTvSearchConfirm!!.visibility = View.VISIBLE
@@ -89,6 +97,11 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
         return this
     }
 
+    fun dismissRightTvView(): BaseToolBarHelper {
+        mToolbarTvRight!!.visibility = View.GONE
+        return this
+    }
+
     fun dismissSearchView(): BaseToolBarHelper {
         mToolbarLlSearch!!.visibility = View.GONE
         mToolbarEtSearchContent!!.visibility = View.GONE
@@ -99,6 +112,7 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
     fun dismissAllRightView(): BaseToolBarHelper {
         mToolbarIbRight1!!.visibility = View.GONE
         mToolbarIbRight2!!.visibility = View.GONE
+        mToolbarTvRight!!.visibility = View.GONE
         return this
     }
 
@@ -106,11 +120,12 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
         mToolbarIbLeft!!.visibility = View.GONE
         mToolbarIbRight1!!.visibility = View.GONE
         mToolbarIbRight2!!.visibility = View.GONE
+        mToolbarTvRight!!.visibility = View.GONE
         return this
     }
 
-    fun setBgImg(right1ResId: Int) {
-        setBgImg(-1, right1ResId)
+    fun setBgImg(left1ResId: Int) {
+        setBgImg(left1ResId, -1)
     }
 
     fun setBgImg(leftResId: Int, right1ResId: Int) {
@@ -140,6 +155,11 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
         return this
     }
 
+    fun setRightTvName(name: String): BaseToolBarHelper {
+        mToolbarTvRight!!.text = name
+        return this
+    }
+
     fun getLeftView(): ImageButton {
         return mToolbarIbLeft!!
     }
@@ -150,6 +170,10 @@ class BaseToolBarHelper(baseToolbar: Toolbar) {
 
     fun getRight2View(): ImageButton {
         return mToolbarIbRight1!!
+    }
+
+    fun getRightTvView(): TextView {
+        return mToolbarTvRight!!
     }
 
     fun getEtSearchContentView(): EditText {

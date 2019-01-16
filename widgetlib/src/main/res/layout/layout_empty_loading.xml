@@ -3,7 +3,8 @@
     android:id="@+id/layout_empty_loading"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_f6f6f6"
+    android:background="@color/color_fbfbfb"
+    android:clickable="true"
     android:visibility="gone">
 
     <LinearLayout
@@ -16,9 +17,8 @@
 
         <ImageView
             android:id="@+id/layout_iv_loading"
-            android:layout_width="@dimen/dp_48"
-            android:layout_height="@dimen/dp_48"
-            android:indeterminateDrawable="@drawable/gif_loading" />
+            android:layout_width="@dimen/dp_55"
+            android:layout_height="@dimen/dp_55" />
 
         <TextView
             android:id="@+id/layout_loading_tv"
@@ -41,9 +41,9 @@
 
         <ImageView
             android:id="@+id/layout_empty_data_iv"
-            android:layout_width="@dimen/dp_140"
-            android:layout_height="@dimen/dp_100"
-            android:background="@drawable/img_data_empty" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lib_ic_empty" />
 
         <TextView
             android:id="@+id/layout_empty_data_tv"
@@ -66,9 +66,9 @@
 
         <ImageView
             android:id="@+id/layout_error_iv"
-            android:layout_width="@dimen/dp_140"
-            android:layout_height="@dimen/dp_100"
-            android:background="@drawable/img_data_empty" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/lib_ic_error" />
 
         <TextView
             android:id="@+id/layout_iv"

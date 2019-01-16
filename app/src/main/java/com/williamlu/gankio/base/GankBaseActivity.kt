@@ -1,5 +1,6 @@
 package com.williamlu.gankio.base
 
+import android.os.Bundle
 import com.umeng.analytics.MobclickAgent
 
 /**
@@ -8,6 +9,8 @@ import com.umeng.analytics.MobclickAgent
  * @Description:
  */
 abstract class GankBaseActivity : BaseActivity() {
+    override fun onInitParams(bundle: Bundle) {}
+
     /**
      * 是否需要检查权限 默认不检查
      * 通过 mPermissions 设置要申请的权限

@@ -15,10 +15,18 @@ import com.williamlu.widgetlib.R
  * @Date: 2018/11/20
  * @Description:
  */
-object CustomLoadingDialog {
+class CustomLoadingDialog private constructor() {
+    companion object {
+        private var INSTANCE: CustomLoadingDialog? = null
 
-    fun createLoadingDialog(context: Context): Dialog {
-        return createLoadingDialog(context, "")
+        fun getInstance(): CustomLoadingDialog {
+            synchronized(CustomLoadingDialog::class.java) {
+                if (INSTANCE == null) {
+                    INSTANCE = CustomLoadingDialog()
+                }
+            }
+            return INSTANCE!!
+        }
     }
 
     /**
@@ -29,7 +37,6 @@ object CustomLoadingDialog {
      * @return
      */
     fun createLoadingDialog(context: Context, msg: String): Dialog {
-
         val inflater = LayoutInflater.from(context)
         val v = inflater.inflate(R.layout.dialog_load, null) // 得到加载view
         val layout = v.findViewById(R.id.dialog_view) as LinearLayout // 加载布局
@@ -41,13 +48,12 @@ object CustomLoadingDialog {
                 context, R.anim.loading_animation);
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);*/
-        Glide.with(context).load(R.drawable.loading).into(spaceshipImage)
+        Glide.with(context).load(R.drawable.gif_loading).into(spaceshipImage)
         if (TextUtils.isEmpty(msg)) {
             tipTextView.text = "加载中..."
         } else {
             tipTextView.text = msg // 设置加载信息
         }
-
         val loadingDialog = Dialog(context, R.style.CustomLoadingDialog) // 创建自定义样式dialog
 
         loadingDialog.setCancelable(true) // 不可以用“返回键”取消

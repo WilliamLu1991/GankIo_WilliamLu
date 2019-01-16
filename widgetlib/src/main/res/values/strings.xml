@@ -3,5 +3,5 @@
 
     <string name="msg_data_empty">暂无相关数据</string>
     <string name="msg_loading">加载中...</string>
-    <string name="msg_error">获取数据失败，请检查网络！</string>
+    <string name="msg_error">获取数据失败，请检查网络或联系客服</string>
 </resources>

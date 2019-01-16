@@ -15,6 +15,8 @@ import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.toolslib.PermissionsUtils
+import com.williamlu.toolslib.SpUtils
+import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
 import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import io.reactivex.disposables.CompositeDisposable
@@ -29,6 +31,7 @@ import org.greenrobot.eventbus.ThreadMode
  * @Description:
  */
 abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
+    private val mSpUtils = SpUtils.getInstance(AppConstant.SpConstant.USER_INFO)
     private var mLoadingDialog: Dialog? = null
     private var mLayoutEmptyLoading: RelativeLayout? = null
     private var mLayoutLlEmptyData: LinearLayout? = null
@@ -50,7 +53,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     /**
      * 设置需要的presenter
      */
-    abstract fun initPresenter()
+    protected abstract fun initPresenter()
 
     /**
      * 初始化布局以及View控件
@@ -62,6 +65,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      */
     protected abstract fun initListener()
 
+    /**
+     * 初始化跳转数据
+     */
+    protected abstract fun onInitParams(bundle: Bundle)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (mActivityCacheManager == null) {
@@ -69,11 +77,16 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
         }
         mActivityCacheManager!!.addActivity(this)
         if (mLoadingDialog == null) {
-            mLoadingDialog = CustomLoadingDialog.createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
+            mLoadingDialog = CustomLoadingDialog.getInstance().createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
         }
         EventBus.getDefault().register(this)
         if (getContentViewLayoutID() != 0) {
             setContentView(getContentViewLayoutID())
+            if (intent != null && intent.extras != null) {
+                onInitParams(intent.extras)
+            } else {
+                onInitParams(Bundle())
+            }
             //是否要检查权限
             if (isCheckPermission()) {
                 PermissionsUtils.getInstance().checkAndRequestPermissions(this, mPermissions!!, permissionsResult)
@@ -99,7 +112,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
         if (mSwipeRl != null) {
-            mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
+            mSwipeRl!!.setColorSchemeResources(R.color.colorAccent)
         }
     }
 
@@ -114,11 +127,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      * eventbus相应事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun eventbusListener(o: Any) {
+    fun eventbusAListener(o: Any) {
         if (o is ExitAppEvent) {
             clearSubscribe()
             GankIoApplation.offNetworkReceiver()
             ActivityCacheManager.getInstance().appExit(this)
+        } else if (o is ApiExceptionEvent) {
+            if (o.code == AppConstant.ErrorCodeConstant.ERROR_CODE_10009) {
+                mSpUtils.put(AppConstant.SpConstant.USER_IS_LOGIN, false)
+                EventBus.getDefault().post(LoginOutEvent(context!!))
+            }
+        } else if (o is ServerExceptionEvent) {
+            ToastUtils.showToast(o.msg)
         }
     }
 

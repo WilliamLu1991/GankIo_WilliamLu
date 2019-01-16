@@ -1,6 +1,6 @@
 package com.williamlu.datalib.base
 
-import com.orhanobut.logger.Logger
+import com.williamlu.datalib.DataConstant
 import com.williamlu.datalib.bean.BaseBean
 import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
@@ -10,19 +10,19 @@ import io.reactivex.schedulers.Schedulers
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
- * @Description: 
+ * @Description:
  */
 class DefaultTransformer<T> : ObservableTransformer<T, T> {
 
     override fun apply(tObservable: Observable<T>): Observable<T> {
         return tObservable.subscribeOn(Schedulers.io())
-                .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map { t ->
-                    if ((t as BaseBean<T>).code != 200) {
-                        throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
-                    }
-                    t
+            .unsubscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .map { t ->
+                if ((t as BaseBean<T>).errorCode != DataConstant.ConfigConstant.SUCCESS_SERVER_CODE) {
+                    throw ApiException((t as BaseBean<T>).errorCode!!, (t as BaseBean<T>).errmsg)
                 }
+                t
+            }
     }
 }

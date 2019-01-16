@@ -4,16 +4,11 @@ import java.io.Serializable
 
 /**
  * @Author: WilliamLu
- * @Date: 2018/11/20
+ * @Data: 2019/1/8
  * @Description:
  */
 class BaseBean<T> : Serializable {
-    var code: Int? = 200
-    var msg = ""
-    var subjects: T? = null
-    var count: Int? = null
-    var start: Int? = null
-    var total: Int? = null
-    var title = ""
-    var date = ""
+    var errorCode = 10000
+    var errmsg = ""
+    var data: T? = null
 }

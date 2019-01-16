@@ -7,7 +7,8 @@ package com.williamlu.datalib
  */
 class DataConstant {
 
-    object ToastConstant {
+    object ConfigConstant {
+        const val SUCCESS_SERVER_CODE = 200
         const val ERROR_NETWORK = "网络异常，请检查网络！"
         const val ERROR_TIMEOUT = "网络超时，请稍后再试！"
         const val ERROR_JSONSYNTAX = "数据解析异常！"
