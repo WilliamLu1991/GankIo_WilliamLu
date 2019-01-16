@@ -3,7 +3,7 @@ package com.williamlu.gankio.splash
 import android.content.Intent
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
-import com.williamlu.gankio.home.view.MainActivity
+import com.williamlu.gankio.main.view.MainActivity
 import com.williamlu.toolslib.RxCountDownUtils
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_splash.*

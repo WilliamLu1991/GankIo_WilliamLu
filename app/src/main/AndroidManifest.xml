@@ -36,7 +36,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".home.view.MainActivity"
+            android:name=".main.view.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
