@@ -108,7 +108,8 @@ dependencies {
     api rootProject.ext.dependencies["walle"]
     api rootProject.ext.dependencies["umeng-analytics"]
     api rootProject.ext.dependencies["BRVAH"]
-    api rootProject.ext.dependencies["pickerview"]
     api rootProject.ext.dependencies["matisse"]
+    api rootProject.ext.dependencies["pickerview"]
+    api rootProject.ext.dependencies["pdf-viewer"]
 
 }

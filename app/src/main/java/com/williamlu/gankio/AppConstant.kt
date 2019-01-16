@@ -17,8 +17,8 @@ class AppConstant {
     }
 
     object UrlConstant {
-        const val URL_BASE_PRODUCT = "https://api.douban.com/v2/"
-        const val URL_BASE_TEST = "https://api.douban.com/v2/"
+        const val URL_BASE_PRODUCT = "https://gank.io/api/"
+        const val URL_BASE_TEST = "https://gank.io/api/"
     }
 
     object ConfigConstant {

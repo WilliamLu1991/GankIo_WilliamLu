@@ -1,4 +1,4 @@
-package com.williamlu.gankio.api.douban
+package com.williamlu.gankio.api.test
 
 import com.williamlu.datalib.bean.BaseBean
 import com.williamlu.gankio.model.Movie

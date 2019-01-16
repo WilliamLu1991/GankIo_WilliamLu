@@ -1,4 +1,4 @@
-package com.williamlu.gankio.home.view
+package com.williamlu.gankio.test.view
 
 import android.Manifest
 import android.support.v7.widget.LinearLayoutManager
@@ -7,13 +7,13 @@ import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
-import com.williamlu.gankio.home.adapter.MainListAdapter
-import com.williamlu.gankio.home.contract.MainContract
-import com.williamlu.gankio.home.presenter.MainPresenter
 import com.williamlu.gankio.model.Movie
+import com.williamlu.gankio.test.adapter.TestListAdapter
+import com.williamlu.gankio.test.contract.TestContract
+import com.williamlu.gankio.test.presenter.TestPresenter
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.FullSheetDialog
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_test.*
 import org.greenrobot.eventbus.EventBus
 
 /**
@@ -21,24 +21,24 @@ import org.greenrobot.eventbus.EventBus
  * @Date: 2018/11/20
  * @Description:首页
  */
-class MainActivity : GankIoBaseActivity(), MainContract.View {
-    private var mMainPresenter: MainPresenter? = null
-    private var mainAdapter: MainListAdapter? = null
+class TestActivity : GankIoBaseActivity(), TestContract.View {
+    private var mTestPresenter: TestPresenter? = null
+    private var testAdapter: TestListAdapter? = null
 
     override fun getContentViewLayoutID(): Int {
-        return R.layout.activity_main
+        return R.layout.activity_test
     }
 
     override fun initPresenter() {
-        MainPresenter(this)
+        TestPresenter(this)
     }
 
-    override fun setMainPresenter(presenter: MainPresenter) {
-        mMainPresenter = presenter
+    override fun setTestPresenter(presenter: TestPresenter) {
+        mTestPresenter = presenter
     }
 
     override fun processComplete(data: List<Movie>) {
-        setMainListData(data)
+        setTestListData(data)
         dismissSwipeRl()
     }
 
@@ -46,29 +46,26 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
         dismissSwipeRl()
     }
 
-    private fun setMainListData(data: List<Movie>) {
-        if (mainAdapter == null) {
-            main_rv.layoutManager = LinearLayoutManager(this)
-            mainAdapter = MainListAdapter(data)
-            main_rv.adapter = mainAdapter
+    private fun setTestListData(data: List<Movie>) {
+        if (testAdapter == null) {
+            test_rv.layoutManager = LinearLayoutManager(this)
+            testAdapter = TestListAdapter(data)
+            test_rv.adapter = testAdapter
         } else {
-            mainAdapter!!.setNewData(data)
+            testAdapter!!.setNewData(data)
         }
     }
 
     override fun checkPermission(): Boolean {
         mPermissions = arrayOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS)
+            Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.ACCESS_WIFI_STATE, Manifest.permission.MODIFY_AUDIO_SETTINGS)
         return true
     }
 
     override fun initView() {
-        mBaseToolBarHelper!!.showLeftView().setBgImg(R.drawable.lib_ic_personal, -1)
+        mBaseToolBarHelper!!.showLeftView().setBgImg(R.drawable.lib_ic_personal)
         showLoadingView()
-        mMainPresenter!!.getData()
-        mSwipeRl.setOnRefreshListener {
-            mMainPresenter!!.getData()
-        }
+        mTestPresenter!!.getData()
     }
 
     override fun initListener() {
@@ -76,6 +73,9 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
             val fullSheetDialog = FullSheetDialog(this)
             fullSheetDialog.setContentView(R.layout.activity_splash)
             fullSheetDialog.show()
+        }
+        mSwipeRl.setOnRefreshListener {
+            mTestPresenter!!.getData()
         }
     }
 

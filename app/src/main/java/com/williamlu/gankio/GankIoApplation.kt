@@ -43,7 +43,10 @@ class GankIoApplation : Application() {
     }
 
     private fun initUmeng() {
-        val channel = WalleChannelReader.getChannel(getApplication())
+        var channel = WalleChannelReader.getChannel(getApplication())
+        if (channel == null) {
+            channel = "debug"
+        }
         val umAnalyticsConfig = MobclickAgent.UMAnalyticsConfig(this, AppConstant.ConfigConstant.UMENG_APPKEY, channel)
         MobclickAgent.startWithConfigure(umAnalyticsConfig)
     }

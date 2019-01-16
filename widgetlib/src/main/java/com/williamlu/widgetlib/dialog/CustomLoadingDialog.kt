@@ -48,7 +48,7 @@ class CustomLoadingDialog private constructor() {
                 context, R.anim.loading_animation);
         // 使用ImageView显示动画
         spaceshipImage.startAnimation(hyperspaceJumpAnimation);*/
-        Glide.with(context).load(R.drawable.gif_loading).into(spaceshipImage)
+        Glide.with(context).load(R.drawable.lib_gif_loading).into(spaceshipImage)
         if (TextUtils.isEmpty(msg)) {
             tipTextView.text = "加载中..."
         } else {

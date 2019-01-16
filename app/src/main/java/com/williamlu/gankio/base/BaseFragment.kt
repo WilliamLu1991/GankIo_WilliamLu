@@ -2,10 +2,12 @@ package com.williamlu.gankio.base
 
 import android.app.Dialog
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -13,14 +15,10 @@ import com.bumptech.glide.Glide
 import com.williamlu.datalib.bean.ApiExceptionEvent
 import com.williamlu.datalib.bean.ServerExceptionEvent
 import com.williamlu.gankio.AppConstant
-import com.williamlu.gankio.GankIoApplation
 import com.williamlu.gankio.R
-import com.williamlu.gankio.event.ExitAppEvent
-import com.williamlu.toolslib.PermissionsUtils
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.BaseToolBarHelper
-import com.williamlu.widgetlib.dialog.CustomLoadingDialog
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
@@ -32,8 +30,9 @@ import org.greenrobot.eventbus.ThreadMode
  * @Date: 2018/11/20
  * @Description:
  */
-abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
+abstract class BaseFragment : Fragment(), BaseLoadView {
     private val mSpUtils = SpUtils.getInstance(AppConstant.SpConstant.USER_INFO)
+    private var rootView: View? = null
     private var mLoadingDialog: Dialog? = null
     private var mLayoutEmptyLoading: RelativeLayout? = null
     private var mLayoutLlEmptyData: LinearLayout? = null
@@ -41,11 +40,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private var mLayoutIvLoading: ImageView? = null
     private var mLayoutLlError: LinearLayout? = null
     private var mBaseToolbar: Toolbar? = null
-    private var mActivityCacheManager: ActivityCacheManager? = null
-    private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
+    private var mSwipeRl: SwipeRefreshLayout? = null
     private var mCompositeDisposable: CompositeDisposable? = null
-    protected var mPermissions: Array<String>? = null
+    protected var mActivity: BaseActivity? = null
+    private var isFirst = true
 
     /**
      * 获取布局ID
@@ -55,64 +54,59 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     /**
      * 设置需要的presenter
      */
-    protected abstract fun initPresenter()
+    abstract fun initPresenter()
 
     /**
      * 初始化布局以及View控件
      */
-    protected abstract fun initView()
+    protected abstract fun initView(rootView: View?)
 
     /**
      * 初始化监听事件
      */
     protected abstract fun initListener()
 
-    /**
-     * 初始化跳转数据
-     */
-    protected abstract fun onInitParams(bundle: Bundle)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (mActivityCacheManager == null) {
-            mActivityCacheManager = ActivityCacheManager.getInstance()
-        }
-        mActivityCacheManager!!.addActivity(this)
-        if (mLoadingDialog == null) {
-            mLoadingDialog = CustomLoadingDialog.getInstance().createLoadingDialog(this, AppConstant.DialogConstant.LOADING)
-        }
+        mActivity = activity as BaseActivity?
         EventBus.getDefault().register(this)
-        if (getContentViewLayoutID() != 0) {
-            setContentView(getContentViewLayoutID())
-            if (intent != null && intent.extras != null) {
-                onInitParams(intent.extras)
-            } else {
-                onInitParams(Bundle())
+        isFirst = true
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        if (rootView == null) {
+            if (getContentViewLayoutID() != 0) {
+                rootView = inflater.inflate(getContentViewLayoutID(), container, false)
             }
-            //是否要检查权限
-            if (isCheckPermission()) {
-                PermissionsUtils.getInstance().checkAndRequestPermissions(this, mPermissions!!, permissionsResult)
-            } else {
-                initPresenter()
-                initView()
-                initListener()
-            }
+        } else {
+            isFirst = false
+        }
+        val parent = rootView!!.parent as ViewGroup?
+        parent?.removeView(rootView)
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (isFirst) {
+            setContentView(rootView)
+            initPresenter()
+            initView(rootView!!)
+            initListener()
         }
     }
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
-        mLayoutEmptyLoading = findViewById<RelativeLayout>(R.id.layout_empty_loading)
-        mLayoutLlEmptyData = findViewById<LinearLayout>(R.id.layout_ll_empty_data)
-        mLayoutLlLoading = findViewById<LinearLayout>(R.id.layout_ll_loading)
-        mLayoutIvLoading = findViewById<ImageView>(R.id.layout_iv_loading)
-        mLayoutLlError = findViewById<LinearLayout>(R.id.layout_ll_error)
-        mBaseToolbar = findViewById<Toolbar>(R.id.base_toolbar)
-        mSwipeRl = findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
+    fun setContentView(v: View?) {
+        mLayoutEmptyLoading = v!!.findViewById<RelativeLayout>(R.id.layout_empty_loading)
+        mLayoutLlEmptyData = v.findViewById<LinearLayout>(R.id.layout_ll_empty_data)
+        mLayoutLlLoading = v.findViewById<LinearLayout>(R.id.layout_ll_loading)
+        mLayoutIvLoading = v.findViewById<ImageView>(R.id.layout_iv_loading)
+        mLayoutLlError = v.findViewById<LinearLayout>(R.id.layout_ll_error)
+        mBaseToolbar = v.findViewById<Toolbar>(R.id.base_toolbar)
         if (mBaseToolbar != null) {
-            setSupportActionBar(mBaseToolbar)
             mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
+        mSwipeRl = v.findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
         if (mSwipeRl != null) {
             mSwipeRl!!.setColorSchemeResources(R.color.colorAccent)
         }
@@ -121,7 +115,6 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     override fun onDestroy() {
         super.onDestroy()
         clearSubscribe()
-        mActivityCacheManager!!.removeActivity(this)
         EventBus.getDefault().unregister(this)
     }
 
@@ -129,12 +122,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
      * eventbus相应事件
      */
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun eventbusAListener(o: Any) {
-        if (o is ExitAppEvent) {
-            clearSubscribe()
-            GankIoApplation.offNetworkReceiver()
-            ActivityCacheManager.getInstance().appExit(this)
-        } else if (o is ApiExceptionEvent) {
+    fun eventbusBaseFListener(o: Any) {
+        if (o is ApiExceptionEvent) {
             //统一处理后台返回的错误码
 
         } else if (o is ServerExceptionEvent) {
@@ -168,44 +157,14 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     }
 
     /**
-     * 检查权限及申请
-     * 通过 mPermissions 设置要申请的权限
-     */
-    protected abstract fun checkPermission(): Boolean
-
-    protected fun isCheckPermission(): Boolean {
-        return checkPermission()
-    }
-
-    //监听权限的回调
-    var permissionsResult: PermissionsUtils.IPermissionsResult = object : PermissionsUtils.IPermissionsResult {
-        override fun passPermissions() {
-            //权限通过
-            initPresenter()
-            initView()
-            initListener()
-        }
-
-        override fun forbidPermissions() {
-            //权限不通过
-            finish()
-        }
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        PermissionsUtils.getInstance().onRequestPermissionsResult(this, requestCode, permissions, grantResults)
-    }
-
-    /**
      * 基础dialog及view的统一管理
      */
     override fun showLoadingDialog() {
-        mLoadingDialog!!.show()
+        mActivity!!.showLoadingDialog()
     }
 
     override fun dismissLoadingDialog() {
-        mLoadingDialog!!.dismiss()
+        mActivity!!.dismissLoadingDialog()
     }
 
     override fun showLoadingView() {
