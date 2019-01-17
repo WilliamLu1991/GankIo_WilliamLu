@@ -2,11 +2,13 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 整体的背景颜色 -->
     <item android:drawable="@android:color/white" />
-    <item android:left="@dimen/dp_1" android:top="@dimen/dp_1" android:right="@dimen/dp_1" android:bottom="@dimen/dp_1">
+    <item
+        android:bottom="@dimen/dp_40"
+        android:gravity="center">
         <!-- 中间的图片 -->
         <bitmap
             android:gravity="center"
             android:scaleType="center"
-            android:src="@drawable/me"/>
+            android:src="@drawable/lib_ic_lulu" />
     </item>
 </layer-list>

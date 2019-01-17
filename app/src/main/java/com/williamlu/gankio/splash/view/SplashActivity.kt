@@ -1,14 +1,18 @@
-package com.williamlu.gankio.splash
+package com.williamlu.gankio.splash.view
 
 import android.content.Intent
+import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.main.view.MainActivity
 import com.williamlu.toolslib.RxCountDownUtils
+import com.williamlu.toolslib.SpUtils
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : GankIoBaseActivity() {
+    private val mSpUtils = SpUtils.getInstance(AppConstant.SpConstant.USER_INFO)
+
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_splash
     }
@@ -32,8 +36,7 @@ class SplashActivity : GankIoBaseActivity() {
             }
 
             override fun onComplete() {
-                startActivity(Intent(baseContext, MainActivity::class.java))
-                finish()
+                goActivity()
             }
 
         })
@@ -41,9 +44,18 @@ class SplashActivity : GankIoBaseActivity() {
 
     override fun initListener() {
         splash_tv_time.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            goActivity()
         }
+    }
+
+    private fun goActivity() {
+        val isFirstStartApp = mSpUtils.getBoolean(AppConstant.SpConstant.USER_IS_FIRST_START_APP, true)
+        if (isFirstStartApp) {
+            startActivity(Intent(this@SplashActivity, GuideActivity::class.java))
+        } else {
+            startActivity(Intent(baseContext, MainActivity::class.java))
+        }
+        finish()
     }
 
 }

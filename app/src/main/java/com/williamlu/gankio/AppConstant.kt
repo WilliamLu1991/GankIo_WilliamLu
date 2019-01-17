@@ -62,10 +62,16 @@ class AppConstant {
     }
 
     object SpConstant {
+        const val USER_INFO = "USER_INFO"
+
         const val USERNAME_HISTORY = "username_history"
-        const val USER_INFO = "user_info"
+        const val USER_PHONE = "user_phone"
+        const val USER_PASSWORD = "user_password"
         const val USER_TOKEN = "user_token"
         const val USER_NAME = "user_name"
+        const val USER_IS_LOGIN = "user_is_login"
+        const val USER_IS_FIRST_START_APP = "user_is_first_start_app"
+        const val USER_ID = "user_id"
     }
 
 }

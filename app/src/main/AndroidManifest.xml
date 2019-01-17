@@ -47,7 +47,7 @@
             android:theme="@android:style/Theme.Translucent" />
 
         <activity
-            android:name=".splash.SplashActivity"
+            android:name=".splash.view.SplashActivity"
             android:launchMode="singleTop"
             android:theme="@style/SplashTheme">
             <intent-filter>
@@ -63,6 +63,10 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".base.BaseWebViewActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".splash.view.GuideActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
     </application>
