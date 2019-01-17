@@ -38,7 +38,7 @@ object BitmapUtil {
     @SuppressLint("NewApi")
     fun convertStringToBitmap(str: String): Bitmap? {
         // OutputStream out;
-        var bitmap: Bitmap? = null
+        var bitmap: Bitmap
         try {
             // out = new FileOutputStream("/sdcard/aa.jpg");
             val bytes = Base64.getDecoder().decode(str)

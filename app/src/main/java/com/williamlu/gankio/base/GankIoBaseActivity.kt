@@ -9,7 +9,7 @@ import com.umeng.analytics.MobclickAgent
  * @Description:
  */
 abstract class GankIoBaseActivity : BaseActivity() {
-    override fun onInitParams(bundle: Bundle) {}
+    override fun onInitParams(bundle: Bundle?) {}
 
     /**
      * 是否需要检查权限 默认不检查

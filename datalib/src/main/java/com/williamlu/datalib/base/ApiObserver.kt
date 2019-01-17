@@ -31,7 +31,7 @@ abstract class ApiObserver<T> : Observer<T> {
         if (e is ApiException) {
             //处理服务器返回的错误
             showMsg = e.errmsg
-            EventBus.getDefault().post(ApiExceptionEvent(e.errorCode, e.errmsg!!))
+            EventBus.getDefault().post(ApiExceptionEvent(e.errorCode, e.errmsg))
         } else if (e is ConnectException || e is UnknownHostException) {
             showMsg = DataConstant.ConfigConstant.ERROR_NETWORK
             EventBus.getDefault().post(ServerExceptionEvent(showMsg))

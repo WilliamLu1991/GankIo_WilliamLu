@@ -15,13 +15,13 @@ import com.williamlu.widgetlib.R
 class FullSheetDialog(context: Context) : BottomSheetDialog(context) {
     override fun show() {
         super.show()
-        window.apply {
-            var layout = decorView.findViewById<FrameLayout>(R.id.design_bottom_sheet)
-            var orginLayoutParams = layout.layoutParams
-            orginLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
-            layout.layoutParams = orginLayoutParams
-            val mDialogBehavior = BottomSheetBehavior.from(layout)
-            mDialogBehavior.setState(BottomSheetBehavior.STATE_EXPANDED)
-        }
+
+        var layout = window!!.decorView.findViewById<FrameLayout>(R.id.design_bottom_sheet)
+        var orginLayoutParams = layout.layoutParams
+        orginLayoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+        layout.layoutParams = orginLayoutParams
+        val mDialogBehavior = BottomSheetBehavior.from(layout)
+        mDialogBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+
     }
 }

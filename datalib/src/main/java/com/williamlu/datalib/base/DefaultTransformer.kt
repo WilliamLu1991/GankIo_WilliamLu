@@ -19,11 +19,11 @@ class DefaultTransformer<T> : ObservableTransformer<T, T> {
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { t ->
-                    if ((t as BaseBean<T>).error) {
-                        throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
+                    if ((t as BaseBean<*>).error) {
+                        throw ApiException((t as BaseBean<*>).code, (t as BaseBean<*>).msg)
                     }
-                    if ((t as BaseBean<T>).code != DataConstant.ConfigConstant.SUCCESS_SERVER_CODE) {
-                        throw ApiException((t as BaseBean<T>).code!!, (t as BaseBean<T>).msg)
+                    if ((t as BaseBean<*>).code != DataConstant.ConfigConstant.SUCCESS_SERVER_CODE) {
+                        throw ApiException((t as BaseBean<*>).code, (t as BaseBean<*>).msg)
                     }
                     t
                 }

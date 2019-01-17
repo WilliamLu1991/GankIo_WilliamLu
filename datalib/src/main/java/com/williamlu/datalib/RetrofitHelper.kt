@@ -31,12 +31,10 @@ object RetrofitHelper {
     }
 
 
-    fun <T> getApiService(baseUrl: String, clz: Class<T>, client: OkHttpClient?): T {
-        var client = client
-        if (client == null) client = mOkHttpClient
+    fun <T> getApiService(baseUrl: String, clz: Class<T>): T {
         val retrofit = Retrofit.Builder()
                 .baseUrl(baseUrl)
-                .client(client)
+                .client(mOkHttpClient!!)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build()

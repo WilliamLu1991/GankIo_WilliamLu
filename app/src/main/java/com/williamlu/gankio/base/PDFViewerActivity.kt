@@ -19,9 +19,9 @@ class PDFViewerActivity : GankIoBaseActivity() {
         }
     }
 
-    override fun onInitParams(bundle: Bundle) {
+    override fun onInitParams(bundle: Bundle?) {
         super.onInitParams(bundle)
-        mFileName = bundle.getString("fileName")
+        mFileName = bundle!!.getString("fileName")
         mTitle = bundle.getString("title")
     }
 

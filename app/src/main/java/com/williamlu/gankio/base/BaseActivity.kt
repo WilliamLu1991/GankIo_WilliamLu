@@ -70,7 +70,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     /**
      * 初始化跳转数据
      */
-    protected abstract fun onInitParams(bundle: Bundle)
+    protected abstract fun onInitParams(bundle: Bundle?)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

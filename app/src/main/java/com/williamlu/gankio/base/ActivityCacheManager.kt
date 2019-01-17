@@ -51,9 +51,7 @@ class ActivityCacheManager private constructor() {
         var i = 0
         val size = activityList.size
         while (i < size) {
-            if (null != activityList[i]) {
-                activityList[i].finish()
-            }
+            activityList[i].finish()
             i++
         }
         activityList.clear()

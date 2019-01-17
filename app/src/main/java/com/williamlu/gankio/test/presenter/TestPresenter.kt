@@ -22,13 +22,9 @@ class TestPresenter(cView: TestContract.View) : TestContract.Presenter {
     override fun getData() {
         DouBanApiService.getInstance().getMovieTop250(1, 20).subscribe(object : ApiObserver<BaseBean<List<Movie>>>() {
             override fun onNext(t: BaseBean<List<Movie>>) {
-                if (t == null) {
-                    mView!!.showEmptyDataView()
-                } else {
-                    mView!!.processComplete(t.data as List<Movie>)
-                    mView!!.dismissAllView()
-                    mView!!.dismissLoadingDialog()
-                }
+                mView!!.processComplete(t.data as List<Movie>)
+                mView!!.dismissAllView()
+                mView!!.dismissLoadingDialog()
             }
 
             override fun onError(e: Throwable) {

@@ -12,8 +12,8 @@ import com.williamlu.gankio.api.test.DouBanIApi
  */
 open class BaseApiService {
 
-    var mDouBanApiService: DouBanIApi = RetrofitHelper.getApiService(AppConstant.getBaseUrl(), DouBanIApi::class.java, null)
+    var mDouBanApiService: DouBanIApi = RetrofitHelper.getApiService(AppConstant.getBaseUrl(), DouBanIApi::class.java)
 
-    var mGankIoApiService: GankIoIApi = RetrofitHelper.getApiService(AppConstant.getBaseUrl(), GankIoIApi::class.java, null)
+    var mGankIoApiService: GankIoIApi = RetrofitHelper.getApiService(AppConstant.getBaseUrl(), GankIoIApi::class.java)
 
 }

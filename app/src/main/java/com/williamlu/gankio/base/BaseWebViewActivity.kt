@@ -22,9 +22,9 @@ class BaseWebViewActivity : GankIoBaseActivity() {
         }
     }
 
-    override fun onInitParams(bundle: Bundle) {
+    override fun onInitParams(bundle: Bundle?) {
         super.onInitParams(bundle)
-        mTitle = bundle.getString("title")
+        mTitle = bundle!!.getString("title")
         mUrl = bundle.getString("url")
     }
 
@@ -66,11 +66,6 @@ class BaseWebViewActivity : GankIoBaseActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 showLoadingView()
-            }
-
-            override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
-                super.onReceivedError(view, errorCode, description, failingUrl)
-                showErrorView()
             }
 
         }
