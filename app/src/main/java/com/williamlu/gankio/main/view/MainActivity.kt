@@ -1,11 +1,8 @@
 package com.williamlu.gankio.main.view
 
-import android.Manifest
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.StaggeredGridLayoutManager
+import android.view.Gravity
 import android.view.KeyEvent
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
@@ -15,7 +12,6 @@ import com.williamlu.gankio.main.presenter.MainPresenter
 import com.williamlu.gankio.model.ClassifyDataBean
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.CustomAlertDialog
-import com.williamlu.widgetlib.dialog.FullSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 
@@ -83,9 +79,12 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
 
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            val fullSheetDialog = FullSheetDialog(this)
-            fullSheetDialog.setContentView(R.layout.view_mine)
-            fullSheetDialog.show()
+            if (main_dl.isDrawerOpen(Gravity.LEFT)) {
+                main_dl.closeDrawer(Gravity.LEFT)
+            } else {
+                main_dl.openDrawer(Gravity.LEFT)
+            }
+
         }
 
         mSwipeRl.setOnRefreshListener {

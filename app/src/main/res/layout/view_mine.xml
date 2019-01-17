@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:id="@+id/mine_ll"
+    android:layout_width="@dimen/dp_300"
     android:layout_height="match_parent"
+    android:layout_gravity="left"
+    android:background="@color/color_f6f6f6"
+    android:clickable="true"
     android:orientation="vertical">
 
     <LinearLayout
@@ -26,8 +30,8 @@
 
             <Button
                 android:id="@+id/mine_bt_login"
-                android:layout_width="@dimen/dp_100"
-                android:layout_height="@dimen/dp_25"
+                android:layout_width="@dimen/dp_120"
+                android:layout_height="@dimen/dp_30"
                 android:layout_marginTop="@dimen/dp_20"
                 android:background="@drawable/shape_bg_fe7e3f_r4"
                 android:gravity="center"

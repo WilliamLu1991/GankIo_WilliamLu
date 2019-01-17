@@ -113,9 +113,9 @@ class CustomAlertDialog private constructor() {
         dialog.setCancelable(wouldCancel)
 
         if (isHappy) {
-            ivIcon.setBackgroundResource(R.drawable.lib_ic_lulu)
+            ivIcon.setBackgroundResource(R.drawable.lib_ic_logo)
         } else {
-            ivIcon.setBackgroundResource(R.drawable.lib_ic_lulu)
+            ivIcon.setBackgroundResource(R.drawable.lib_ic_logo)
         }
         tvLeft.setOnClickListener {
             //onDialogSelectListener!!.onLeftSelect()

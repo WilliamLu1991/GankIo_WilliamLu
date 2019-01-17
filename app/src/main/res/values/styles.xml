@@ -28,7 +28,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginLeft">@dimen/dp_20</item>
-        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:layout_marginTop">@dimen/dp_20</item>
         <item name="android:layout_marginRight">@dimen/dp_20</item>
         <item name="cardBackgroundColor">@color/color_ffffff</item>
         <item name="cardCornerRadius">@dimen/dp_2</item>

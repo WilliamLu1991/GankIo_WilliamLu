@@ -1,6 +1,7 @@
 package com.williamlu.gankio.main.adapter
 
 import android.graphics.Color
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -9,6 +10,7 @@ import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GlideApp
 import com.williamlu.gankio.model.ClassifyDataBean
 import com.williamlu.toolslib.RandomUtil
+import com.williamlu.widgetlib.dialog.FullSheetDialog
 
 /**
  * @Author: WilliamLu
@@ -30,6 +32,23 @@ class MainListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<ClassifyD
                 .into(helper!!.getView(R.id.item_main_iv))
 
         helper.setText(R.id.item_main_tv_desc, item.desc)
+
+        helper.itemView.setOnClickListener {
+            val fullSheetDialog = FullSheetDialog(mContext)
+            val view = View.inflate(mContext, R.layout.view_big_image, null)
+            fullSheetDialog.setContentView(view)
+            fullSheetDialog.show()
+
+            GlideApp.with(mContext)
+                    .load(item.url)
+                    .placeholder(R.drawable.lib_ic_logo)
+                    .error(R.drawable.lib_ic_logo)
+                    .into(view.findViewById<ImageView>(R.id.viewimage_iv_img))
+
+            view.findViewById<ImageView>(R.id.viewimage_iv_close).setOnClickListener {
+                fullSheetDialog.dismiss()
+            }
+        }
     }
 
 }
