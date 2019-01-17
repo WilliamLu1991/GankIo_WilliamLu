@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ff6a2f</color>
-    <color name="colorPrimaryDark">#ff6a2f</color>
-    <color name="colorAccent">#ff6a2f</color>
+    <color name="colorPrimary">#fe7e3f</color>
+    <color name="colorPrimaryDark">#fe7e3f</color>
+    <color name="colorAccent">#fe7e3f</color>
 
-    <color name="color_tab_menu_bg">#ff6a2f</color>
+    <color name="color_tab_menu_bg">#fe7e3f</color>
     <color name="color_tab_select">#333333</color>
     <color name="color_tab_no_select">#d4d4d4</color>
     <color name="color_notice_bg">#fff5da</color>

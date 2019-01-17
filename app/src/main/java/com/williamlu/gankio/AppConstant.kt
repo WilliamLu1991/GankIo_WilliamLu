@@ -25,6 +25,7 @@ class AppConstant {
         const val BUGLY_APPID = "c7a1462f22"
         const val TINKER_NAME = "com.williamlu.gankio.MyTinkerApplationLike"
         const val UMENG_APPKEY = "5c1ba8a0f1f556ace1000513"
+        const val SERVICE_PAGE_SIZE = "20"
     }
 
     object ToastConstant {

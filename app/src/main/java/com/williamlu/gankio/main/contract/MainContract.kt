@@ -1,8 +1,8 @@
 package com.williamlu.gankio.main.contract
 
-import com.williamlu.gankio.model.Movie
 import com.williamlu.gankio.base.BaseLoadView
 import com.williamlu.gankio.main.presenter.MainPresenter
+import com.williamlu.gankio.model.ClassifyDataBean
 
 /**
  * @Author: WilliamLu
@@ -13,14 +13,13 @@ interface MainContract {
     interface View : BaseLoadView {
         fun setMainPresenter(presenter: MainPresenter)
 
-        fun processComplete(data: List<Movie>)
+        fun processComplete(data: List<ClassifyDataBean>)
 
-        fun processError(msg: String)
+        //fun processError(msg: String)
 
     }
 
     interface Presenter {
-        fun getData()
-
+        fun getClassifyData(type: String, pageindex: String)
     }
 }

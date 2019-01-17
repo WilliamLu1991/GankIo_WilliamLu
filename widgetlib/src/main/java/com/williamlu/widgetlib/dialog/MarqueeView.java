@@ -15,7 +15,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 import com.williamlu.widgetlib.R;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -261,7 +260,7 @@ public class MarqueeView extends ViewFlipper {
         if (textView == null) {
             textView = new TextView(getContext());
             textView.setGravity(gravity);
-            textView.setTextColor(textColor);
+            textView.setTextColor(getResources().getColor(textColor));
             textView.setTextSize(textSize);
             textView.setSingleLine(singleLine);
         }

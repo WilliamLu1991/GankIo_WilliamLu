@@ -1,5 +1,8 @@
 package com.williamlu.toolslib
 
+import android.content.Context
+import java.util.*
+
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20
@@ -37,5 +40,26 @@ object RandomUtil {
         } while (bDone)
 
         return retStr
+    }
+
+
+    /**
+     * 创建随机颜色
+     */
+    fun getRandomColorStr(): String {
+        var colorStr = ""
+        var tempStr = StringBuilder()
+        var c = arrayOf("a", "b", "c", "d", "e", "f", "0", "1", "3", "4", "5", "6", "7", "8", "9")
+
+        var random = Random()
+
+        for (i in 1..6) {
+            tempStr.append(c[random.nextInt(c.size)])
+        }
+
+        colorStr = "#$tempStr"
+
+        return colorStr
+
     }
 }
