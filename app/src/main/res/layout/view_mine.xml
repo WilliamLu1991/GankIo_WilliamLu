@@ -70,7 +70,7 @@
                 android:id="@+id/mine_iv_bind_account"
                 android:layout_width="@dimen/dp_19"
                 android:layout_height="@dimen/dp_19"
-                android:background="@drawable/lib_ic_lulu" />
+                android:background="@drawable/lib_ic_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -111,7 +111,7 @@
                     android:id="@+id/mine_iv_help_center"
                     android:layout_width="@dimen/dp_19"
                     android:layout_height="@dimen/dp_19"
-                    android:background="@drawable/lib_ic_lulu" />
+                    android:background="@drawable/lib_ic_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -149,7 +149,7 @@
                     android:id="@+id/mine_iv_suggest"
                     android:layout_width="@dimen/dp_19"
                     android:layout_height="@dimen/dp_19"
-                    android:background="@drawable/lib_ic_lulu" />
+                    android:background="@drawable/lib_ic_logo" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -187,7 +187,7 @@
                 android:id="@+id/mine_iv_setup"
                 android:layout_width="@dimen/dp_19"
                 android:layout_height="@dimen/dp_19"
-                android:background="@drawable/lib_ic_lulu" />
+                android:background="@drawable/lib_ic_logo" />
 
             <TextView
                 android:layout_width="wrap_content"
