@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mine_ll"
-    android:layout_width="@dimen/dp_300"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="left"
     android:background="@color/color_f6f6f6"

@@ -94,7 +94,7 @@ public class BannerLayout extends FrameLayout {
             //绘制默认选中状态图形
             GradientDrawable selectedGradientDrawable = new GradientDrawable();
             selectedGradientDrawable.setShape(GradientDrawable.OVAL);
-            selectedGradientDrawable.setColor(getResources().getColor(R.color.color_b3b3b3));
+            selectedGradientDrawable.setColor(getResources().getColor(R.color.color_fe7e3f));
             selectedGradientDrawable.setSize(dp2px(14), dp2px(2));
             selectedGradientDrawable.setCornerRadius(dp2px(5) / 2);
             mSelectedDrawable = new LayerDrawable(new Drawable[]{selectedGradientDrawable});
@@ -135,7 +135,7 @@ public class BannerLayout extends FrameLayout {
         int marginLeft = dp2px(0);
         int marginRight = dp2px(0);
         int marginTop = dp2px(0);
-        int marginBottom = dp2px(0);
+        int marginBottom = dp2px(12);
         indicatorContainer = new RecyclerView(context);
         LinearLayoutManager indicatorLayoutManager = new LinearLayoutManager(context, orientation, false);
         indicatorContainer.setLayoutManager(indicatorLayoutManager);

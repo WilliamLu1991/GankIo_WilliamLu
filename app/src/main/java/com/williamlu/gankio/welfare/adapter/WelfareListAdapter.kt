@@ -17,7 +17,7 @@ import com.williamlu.widgetlib.dialog.FullSheetDialog
  * @Data: 2018/12/3
  * @Description:
  */
-class MainListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<ClassifyDataBean, BaseViewHolder>(R.layout.item_main_rv, data) {
+class WelfareListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<ClassifyDataBean, BaseViewHolder>(R.layout.item_main_rv, data) {
     override fun convert(helper: BaseViewHolder?, item: ClassifyDataBean?) {
         val ivLayoutParams = helper!!.getView<ImageView>(R.id.item_main_iv).layoutParams
         ivLayoutParams.height = (mContext.resources.getDimensionPixelSize(R.dimen.dp_200) + Math.random() * 200).toInt()

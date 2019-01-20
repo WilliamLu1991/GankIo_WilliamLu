@@ -1,12 +1,12 @@
 package com.williamlu.gankio.main.view
 
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.view.Gravity
 import android.view.KeyEvent
+import com.kingnet.creditclient.main.adapter.MainBannerAdapter
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
-import com.williamlu.gankio.main.adapter.MainListAdapter
+import com.williamlu.gankio.main.adapter.MainTabAdapter
 import com.williamlu.gankio.main.contract.MainContract
 import com.williamlu.gankio.main.presenter.MainPresenter
 import com.williamlu.gankio.model.ClassifyDataBean
@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.EventBus
  */
 class MainActivity : GankIoBaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
-    private var mMainAdapter: MainListAdapter? = null
+    private var mBannerAdapter: MainBannerAdapter? = null
     private var mPageIndex: Int = 1
 
     override fun getContentViewLayoutID(): Int {
@@ -38,43 +38,18 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
     }
 
     override fun processComplete(data: List<ClassifyDataBean>) {
-        initRv(data)
+        //初始化banner
+        initBanner(data)
     }
 
     override fun initView() {
         mBaseToolBarHelper!!.setTitleName(resources.getString(R.string.app_name)).showLeftView().setBgImg(R.drawable.lib_ic_personal)
-        showLoadingView()
         mPageIndex = 1
         mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())
-    }
 
-    private fun initRv(data: List<ClassifyDataBean>) {
-        if (data != null) {
-            if (mMainAdapter == null) {
-                main_rv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-                mMainAdapter = MainListAdapter(data)
-                main_rv.adapter = mMainAdapter
-                mMainAdapter!!.setOnLoadMoreListener {
-                    mPageIndex += 1
-                    mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())
-                }
-            } else {
-                if (mPageIndex == 1) {
-                    mMainAdapter!!.setNewData(data)
-                } else {
-                    if (data.size > 0) {
-                        mMainAdapter!!.addData(data)
-                        mMainAdapter!!.loadMoreComplete()
-                    } else {
-                        mMainAdapter!!.loadMoreEnd()
-                    }
-                }
-            }
-        } else {
-            if (mPageIndex == 1) {
-                showEmptyDataView()
-            }
-        }
+        main_viewpager.adapter = MainTabAdapter(this, supportFragmentManager)
+        main_tablayout.setupWithViewPager(main_viewpager)
+
     }
 
     override fun initListener() {
@@ -86,15 +61,22 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
             }
 
         }
+    }
 
-        mSwipeRl.setOnRefreshListener {
-            if (mMainAdapter != null) {
-                mMainAdapter!!.setEnableLoadMore(false)
-            }
-            mSwipeRl.isRefreshing = false
-            showLoadingView()
-            mPageIndex = 1
-            mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())
+    private fun initBanner(data: List<ClassifyDataBean>) {
+        var subList = data
+        if (subList.size > 4) {
+            subList = data.subList(0, 3)
+        }
+        if (mBannerAdapter == null) {
+            mBannerAdapter = MainBannerAdapter(subList)
+            main_bl_recycler.setAdapter(mBannerAdapter)
+        } else {
+            mBannerAdapter!!.setNewData(subList)
+        }
+        main_bl_recycler.setAutoPlaying(true)
+        mBannerAdapter!!.setOnItemClickListener { adapter, view, position ->
+            ToastUtils.showToast("点了$position")
         }
     }
 

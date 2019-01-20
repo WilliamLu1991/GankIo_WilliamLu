@@ -9,7 +9,8 @@
     android:gravity="center_vertical"
     android:theme="@style/AppTheme.AppBarOverlay"
     app:contentInsetStart="@dimen/dp_0"
-    app:popupTheme="@style/AppTheme.PopupOverlay">
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    app:layout_collapseMode="pin">
 
     <RelativeLayout
         android:layout_width="match_parent"

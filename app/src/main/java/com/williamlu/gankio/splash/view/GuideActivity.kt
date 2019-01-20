@@ -12,6 +12,7 @@ import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.main.view.MainActivity
+import com.williamlu.gankio.main.view.WelfareFragment
 import com.williamlu.gankio.splash.adapter.GuideVPAdapter
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
