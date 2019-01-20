@@ -1,7 +1,6 @@
 package com.williamlu.gankio.main.view
 
 import android.support.v7.widget.StaggeredGridLayoutManager
-import android.view.Gravity
 import android.view.View
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseFragment

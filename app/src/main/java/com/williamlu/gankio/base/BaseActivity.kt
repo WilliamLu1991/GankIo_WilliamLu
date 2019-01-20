@@ -114,7 +114,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
             mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
         if (mSwipeRl != null) {
-            mSwipeRl!!.setColorSchemeResources(R.color.colorAccent)
+            mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
         }
     }
 

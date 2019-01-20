@@ -108,7 +108,7 @@ abstract class BaseFragment : Fragment(), BaseLoadView {
         }
         mSwipeRl = v.findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
         if (mSwipeRl != null) {
-            mSwipeRl!!.setColorSchemeResources(R.color.colorAccent)
+            mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
         }
     }
 

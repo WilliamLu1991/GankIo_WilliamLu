@@ -2,9 +2,12 @@ package com.williamlu.gankio.main.view
 
 import android.view.Gravity
 import android.view.KeyEvent
+import android.view.View
+import android.widget.ImageView
 import com.kingnet.creditclient.main.adapter.MainBannerAdapter
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
+import com.williamlu.gankio.base.GlideApp
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.main.adapter.MainTabAdapter
 import com.williamlu.gankio.main.contract.MainContract
@@ -12,6 +15,7 @@ import com.williamlu.gankio.main.presenter.MainPresenter
 import com.williamlu.gankio.model.ClassifyDataBean
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.dialog.CustomAlertDialog
+import com.williamlu.widgetlib.dialog.FullSheetDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 
@@ -59,7 +63,6 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
             } else {
                 main_dl.openDrawer(Gravity.LEFT)
             }
-
         }
     }
 
@@ -76,7 +79,21 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
         }
         main_bl_recycler.setAutoPlaying(true)
         mBannerAdapter!!.setOnItemClickListener { adapter, view, position ->
-            ToastUtils.showToast("点了$position")
+            val fullSheetDialog = FullSheetDialog(this)
+            val view = View.inflate(this, R.layout.view_big_image, null)
+
+            GlideApp.with(this)
+                    .load(subList[position].url)
+                    .placeholder(R.drawable.lib_ic_logo)
+                    .error(R.drawable.lib_ic_logo)
+                    .into(view.findViewById<ImageView>(R.id.viewimage_iv_img))
+
+            fullSheetDialog.setContentView(view)
+            fullSheetDialog.show()
+
+            view.findViewById<ImageView>(R.id.viewimage_iv_close).setOnClickListener {
+                fullSheetDialog.dismiss()
+            }
         }
     }
 

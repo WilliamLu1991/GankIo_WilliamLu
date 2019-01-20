@@ -36,14 +36,16 @@ class WelfareListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<Classi
         helper.itemView.setOnClickListener {
             val fullSheetDialog = FullSheetDialog(mContext)
             val view = View.inflate(mContext, R.layout.view_big_image, null)
-            fullSheetDialog.setContentView(view)
-            fullSheetDialog.show()
 
             GlideApp.with(mContext)
                     .load(item.url)
                     .placeholder(R.drawable.lib_ic_logo)
                     .error(R.drawable.lib_ic_logo)
                     .into(view.findViewById<ImageView>(R.id.viewimage_iv_img))
+
+            fullSheetDialog.setContentView(view)
+            fullSheetDialog.show()
+
 
             view.findViewById<ImageView>(R.id.viewimage_iv_close).setOnClickListener {
                 fullSheetDialog.dismiss()
