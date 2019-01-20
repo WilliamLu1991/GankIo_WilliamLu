@@ -11,17 +11,24 @@
 
     <include layout="@layout/view_horizontal_line" />
 
-    <FrameLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mSwipeRl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <WebView
-            android:id="@+id/base_webview"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-        <include layout="@layout/layout_empty_loading" />
+            <WebView
+                android:id="@+id/base_webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
-    </FrameLayout>
+            <include layout="@layout/layout_empty_loading" />
+
+        </FrameLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

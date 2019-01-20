@@ -75,6 +75,11 @@ class BaseWebViewActivity : GankIoBaseActivity() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
             finish()
         }
+
+        mSwipeRl.setOnRefreshListener {
+            mSwipeRl.isRefreshing = false
+            initView()
+        }
     }
 
 }
