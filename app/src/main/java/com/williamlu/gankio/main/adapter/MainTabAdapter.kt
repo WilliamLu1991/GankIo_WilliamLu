@@ -4,6 +4,8 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.williamlu.gankio.main.view.AndroidFragment
+import com.williamlu.gankio.main.view.IOSFragment
 import com.williamlu.gankio.main.view.WelfareFragment
 
 /**
@@ -16,9 +18,9 @@ class MainTabAdapter(context: Context, fragmentManager: FragmentManager) : Fragm
     override fun getItem(position: Int): Fragment {
         var fragment: Fragment? = null
         when (position) {
-            0 -> fragment = WelfareFragment()
+            0 -> fragment = AndroidFragment()
             1 -> fragment = WelfareFragment()
-            2 -> fragment = WelfareFragment()
+            2 -> fragment = IOSFragment()
         }
         return fragment!!
     }
