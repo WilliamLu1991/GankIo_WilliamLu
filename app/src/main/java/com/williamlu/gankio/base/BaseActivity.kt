@@ -35,9 +35,9 @@ import org.greenrobot.eventbus.ThreadMode
 abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     private val mSpUtils = SpUtils.getInstance(AppConstant.SpConstant.USER_INFO)
     private var mLoadingDialog: Dialog? = null
-    private var mLayoutEmptyLoading: RelativeLayout? = null
+    protected var mLayoutEmptyLoading: RelativeLayout? = null
     private var mLayoutLlEmptyData: LinearLayout? = null
-    private var mLayoutLlLoading: LinearLayout? = null
+    protected var mLayoutLlLoading: LinearLayout? = null
     private var mLayoutIvLoading: ImageView? = null
     private var mLayoutLlError: LinearLayout? = null
     private var mBaseToolbar: Toolbar? = null

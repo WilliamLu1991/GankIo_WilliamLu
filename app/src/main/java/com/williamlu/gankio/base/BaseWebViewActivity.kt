@@ -76,10 +76,13 @@ class BaseWebViewActivity : GankIoBaseActivity() {
             finish()
         }
 
-        mSwipeRl.setOnRefreshListener {
-            mSwipeRl.isRefreshing = false
+        mLayoutEmptyLoading!!.setOnClickListener {
+            if (mLayoutLlLoading!!.isShown) {
+                return@setOnClickListener
+            }
             initView()
         }
+
     }
 
 }
