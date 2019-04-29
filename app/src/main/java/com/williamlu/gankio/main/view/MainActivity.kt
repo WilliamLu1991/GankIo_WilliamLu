@@ -54,6 +54,7 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
     }
 
     override fun initView() {
+        mBaseToolbar!!.setBackgroundResource(R.drawable.transparent_bg)
         mBaseToolBarHelper!!.setTitleName(resources.getString(R.string.app_name)).showLeftView().setBgImg(R.drawable.lib_ic_personal)
         mPageIndex = 1
         mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())

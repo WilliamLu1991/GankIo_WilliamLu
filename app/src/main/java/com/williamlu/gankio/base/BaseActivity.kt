@@ -40,7 +40,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseLoadView {
     protected var mLayoutLlLoading: LinearLayout? = null
     private var mLayoutIvLoading: ImageView? = null
     private var mLayoutLlError: LinearLayout? = null
-    private var mBaseToolbar: Toolbar? = null
+    protected var mBaseToolbar: Toolbar? = null
     private var mActivityCacheManager: ActivityCacheManager? = null
     private var mSwipeRl: SwipeRefreshLayout? = null
     protected var mBaseToolBarHelper: BaseToolBarHelper? = null
