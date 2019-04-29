@@ -39,6 +39,11 @@ android {
             //设置支持的SO库架构
             abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
         }
+
+        multiDexEnabled true
+
+        //qq登录配置
+        manifestPlaceholders = [qqappid: "你的qqappid"]
     }
 
     buildTypes {
@@ -106,10 +111,14 @@ dependencies {
     api rootProject.ext.dependencies["bugly-tinker"]
     api rootProject.ext.dependencies["bugly-nativecrashreport"]
     api rootProject.ext.dependencies["walle"]
-    api rootProject.ext.dependencies["umeng-analytics"]
     api rootProject.ext.dependencies["BRVAH"]
     api rootProject.ext.dependencies["matisse"]
     api rootProject.ext.dependencies["pickerview"]
     api rootProject.ext.dependencies["pdf-viewer"]
+    api rootProject.ext.dependencies["umsdk-common"]
+    api rootProject.ext.dependencies["umeng-analytics"]
+    api rootProject.ext.dependencies["umsdk-share-core"]
+    api rootProject.ext.dependencies["umsdk-share-qq"]
+    api rootProject.ext.dependencies["umsdk-share-wechat"]
 
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 设置渐变填充颜色 -->
+    <gradient
+        android:endColor="#ffc12b"
+        android:startColor="#ff881f" />
+
+    <!-- 设置几何图形四个角的弧度 -->
+    <corners android:radius="@dimen/dp_13" />
+
+</shape>

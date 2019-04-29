@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <dimen name="toolbar_height">@dimen/dp_60</dimen>
+    <dimen name="toolbar_height">@dimen/dp_44</dimen>
 
     <!-- dp and sp values, must be defind in this file! -->
     <!-- view size,you can add if there is no one -->
@@ -9,14 +9,23 @@
     <dimen name="dp_m_20">-20dp</dimen>
     <dimen name="dp_m_12">-12dp</dimen>
     <dimen name="dp_m_10">-10dp</dimen>
+    <dimen name="dp_m_9">-9dp</dimen>
     <dimen name="dp_m_8">-8dp</dimen>
+    <dimen name="dp_m_7">-7dp</dimen>
+    <dimen name="dp_m_6">-6dp</dimen>
     <dimen name="dp_m_5">-5dp</dimen>
+    <dimen name="dp_m_4">-4dp</dimen>
+    <dimen name="dp_m_3">-3dp</dimen>
     <dimen name="dp_m_2">-2dp</dimen>
     <dimen name="dp_m_1">-1dp</dimen>
     <dimen name="dp_0">0dp</dimen>
     <dimen name="dp_0_1">0.1dp</dimen>
+    <dimen name="dp_0_2">0.2dp</dimen>
+    <dimen name="dp_0_3">0.3dp</dimen>
+    <dimen name="dp_0_4">0.4dp</dimen>
     <dimen name="dp_0_5">0.5dp</dimen>
     <dimen name="dp_0_6">0.6dp</dimen>
+    <dimen name="dp_0_8">0.8dp</dimen>
     <dimen name="dp_1">1dp</dimen>
     <dimen name="dp_1_5">1.5dp</dimen>
     <dimen name="dp_2">2dp</dimen>
@@ -393,6 +402,8 @@
     <dimen name="dp_720">720dp</dimen>
 
     <!-- font size,you can add if there is no one -->
+    <dimen name="sp_4">4sp</dimen>
+    <dimen name="sp_5">5sp</dimen>
     <dimen name="sp_6">6sp</dimen>
     <dimen name="sp_7">7sp</dimen>
     <dimen name="sp_8">8sp</dimen>

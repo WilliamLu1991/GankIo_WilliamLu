@@ -19,8 +19,8 @@ import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.toolslib.PermissionsUtils
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
-import com.williamlu.widgetlib.dialog.BaseToolBarHelper
-import com.williamlu.widgetlib.dialog.CustomLoadingDialog
+import com.williamlu.widgetlib.BaseToolBarHelper
+import com.williamlu.widgetlib.CustomLoadingDialog
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus

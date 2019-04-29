@@ -18,7 +18,7 @@ import com.williamlu.gankio.AppConstant
 import com.williamlu.gankio.R
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
-import com.williamlu.widgetlib.dialog.BaseToolBarHelper
+import com.williamlu.widgetlib.BaseToolBarHelper
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus

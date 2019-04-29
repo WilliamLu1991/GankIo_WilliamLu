@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">GankIo</string>
-
+    <string name="login_quick">快捷登录</string>
+    <string name="login_account_pwd">账号密码登录</string>
 </resources>

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">WidgetLib</string>
+    <string name="toolbar_name">GankIo</string>
 
-    <string name="msg_data_empty">暂无相关数据</string>
+    <string name="msg_data_empty">抱歉~暂时还没有相关数据哦~</string>
     <string name="msg_loading">加载中...</string>
-    <string name="msg_error">获取数据失败，请检查网络或联系客服</string>
+    <string name="msg_error">获取数据失败，请检查网络或下拉刷新试试</string>
 </resources>

@@ -12,7 +12,7 @@ import com.williamlu.gankio.test.adapter.TestListAdapter
 import com.williamlu.gankio.test.contract.TestContract
 import com.williamlu.gankio.test.presenter.TestPresenter
 import com.williamlu.toolslib.ToastUtils
-import com.williamlu.widgetlib.dialog.FullSheetDialog
+import com.williamlu.widgetlib.FullSheetDialog
 import kotlinx.android.synthetic.main.activity_test.*
 import org.greenrobot.eventbus.EventBus
 

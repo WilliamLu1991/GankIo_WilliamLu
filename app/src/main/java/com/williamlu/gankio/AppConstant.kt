@@ -5,14 +5,12 @@ package com.williamlu.gankio
  * @Date: 2018/11/20
  * @Description:
  */
-class AppConstant {
-    companion object {
-        fun getBaseUrl(): String {
-            return if (BuildConfig.DEBUG) {
-                UrlConstant.URL_BASE_TEST
-            } else {
-                UrlConstant.URL_BASE_PRODUCT
-            }
+object AppConstant {
+    fun getBaseUrl(): String {
+        return if (BuildConfig.DEBUG) {
+            UrlConstant.URL_BASE_TEST
+        } else {
+            UrlConstant.URL_BASE_PRODUCT
         }
     }
 
@@ -26,6 +24,7 @@ class AppConstant {
         const val TINKER_NAME = "com.williamlu.gankio.MyTinkerApplationLike"
         const val UMENG_APPKEY = "5c1ba8a0f1f556ace1000513"
         const val SERVICE_PAGE_SIZE = "20"
+        const val PDF_USER_AGREEMENT = "用户协议及隐私保护政策.pdf"
     }
 
     object ToastConstant {

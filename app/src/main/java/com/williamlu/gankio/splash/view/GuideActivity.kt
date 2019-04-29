@@ -12,11 +12,10 @@ import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
 import com.williamlu.gankio.main.view.MainActivity
-import com.williamlu.gankio.main.view.WelfareFragment
 import com.williamlu.gankio.splash.adapter.GuideVPAdapter
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
-import com.williamlu.widgetlib.dialog.CustomAlertDialog
+import com.williamlu.widgetlib.CustomAlertDialog
 import kotlinx.android.synthetic.main.activity_guide.*
 import org.greenrobot.eventbus.EventBus
 
@@ -24,7 +23,7 @@ class GuideActivity : GankIoBaseActivity() {
     private val mSpUtils = SpUtils.getInstance(AppConstant.SpConstant.USER_INFO)
     private var viewList = ArrayList<View>()
     private var mGuideVPAdapter: GuideVPAdapter? = null
-    private var mIvList = arrayOf(R.drawable.lib_ic_lulu, R.drawable.lib_ic_empty, R.drawable.lib_ic_search)
+    private var mIvList = arrayOf(R.drawable.lib_ic_logo, R.drawable.lib_ic_lulu, R.drawable.lib_ic_logo)
 
     override fun getContentViewLayoutID(): Int {
         return R.layout.activity_guide

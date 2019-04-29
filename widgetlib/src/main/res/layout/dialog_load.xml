@@ -3,7 +3,7 @@
     android:id="@+id/dialog_view"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@drawable/loading_bg"
+    android:background="@drawable/shape_bg_ffffff_r10"
     android:gravity="center"
     android:minWidth="@dimen/dp_100"
     android:minHeight="@dimen/dp_100"
@@ -22,5 +22,5 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_8"
         android:text="@string/msg_loading"
-        android:textColor="#fff" />
+        android:textColor="#fd924a" />
 </LinearLayout>

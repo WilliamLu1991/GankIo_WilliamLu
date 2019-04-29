@@ -4,8 +4,8 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
+import com.williamlu.gankio.ios.view.IOSFragment
 import com.williamlu.gankio.main.view.AndroidFragment
-import com.williamlu.gankio.main.view.IOSFragment
 import com.williamlu.gankio.main.view.WelfareFragment
 
 /**

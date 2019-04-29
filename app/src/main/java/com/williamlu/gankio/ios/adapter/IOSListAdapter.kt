@@ -2,13 +2,13 @@ package com.williamlu.gankio.main.adapter
 
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.BaseWebViewActivity
-import com.williamlu.gankio.base.GlideApp
 import com.williamlu.gankio.model.ClassifyDataBean
-import com.williamlu.widgetlib.dialog.FullSheetDialog
+import com.williamlu.widgetlib.FullSheetDialog
 
 /**
  * @Author: WilliamLu
@@ -18,13 +18,13 @@ import com.williamlu.widgetlib.dialog.FullSheetDialog
 class IOSListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<ClassifyDataBean, BaseViewHolder>(R.layout.item_ios_rv, data) {
     override fun convert(helper: BaseViewHolder?, item: ClassifyDataBean?) {
         if (item!!.images != null && item.images.size > 0) {
-            GlideApp.with(mContext)
+            Glide.with(mContext)
                     .load(item.images[0])
                     .placeholder(R.drawable.lib_ic_logo)
                     .error(R.drawable.lib_ic_logo)
                     .into(helper!!.getView(R.id.item_ios_iv))
         } else {
-            GlideApp.with(mContext)
+            Glide.with(mContext)
                     .load(R.drawable.lib_ic_logo)
                     .placeholder(R.drawable.lib_ic_logo)
                     .error(R.drawable.lib_ic_logo)
@@ -45,7 +45,7 @@ class IOSListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<ClassifyDa
             val fullSheetDialog = FullSheetDialog(mContext)
             val view = View.inflate(mContext, R.layout.view_big_image, null)
 
-            GlideApp.with(mContext)
+            Glide.with(mContext)
                     .load(item.images[0])
                     .placeholder(R.drawable.lib_ic_logo)
                     .error(R.drawable.lib_ic_logo)

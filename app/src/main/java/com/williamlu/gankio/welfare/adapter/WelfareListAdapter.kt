@@ -4,13 +4,13 @@ import android.graphics.Color
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.williamlu.gankio.R
-import com.williamlu.gankio.base.GlideApp
 import com.williamlu.gankio.model.ClassifyDataBean
 import com.williamlu.toolslib.RandomUtil
-import com.williamlu.widgetlib.dialog.FullSheetDialog
+import com.williamlu.widgetlib.FullSheetDialog
 
 /**
  * @Author: WilliamLu
@@ -25,7 +25,7 @@ class WelfareListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<Classi
 
         helper.getView<TextView>(R.id.item_main_tv_desc).setBackgroundColor(Color.parseColor(RandomUtil.getRandomColorStr()))
 
-        GlideApp.with(mContext)
+        Glide.with(mContext)
                 .load(item!!.url)
                 .placeholder(R.drawable.lib_ic_logo)
                 .error(R.drawable.lib_ic_logo)
@@ -37,7 +37,7 @@ class WelfareListAdapter(data: List<ClassifyDataBean>) : BaseQuickAdapter<Classi
             val fullSheetDialog = FullSheetDialog(mContext)
             val view = View.inflate(mContext, R.layout.view_big_image, null)
 
-            GlideApp.with(mContext)
+            Glide.with(mContext)
                     .load(item.url)
                     .placeholder(R.drawable.lib_ic_logo)
                     .error(R.drawable.lib_ic_logo)

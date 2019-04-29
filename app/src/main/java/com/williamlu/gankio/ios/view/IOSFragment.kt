@@ -1,16 +1,14 @@
-package com.williamlu.gankio.main.view
+package com.williamlu.gankio.ios.view
 
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseFragment
-import com.williamlu.gankio.main.adapter.AndroidListAdapter
 import com.williamlu.gankio.main.adapter.IOSListAdapter
 import com.williamlu.gankio.main.contract.MainContract
 import com.williamlu.gankio.main.presenter.MainPresenter
 import com.williamlu.gankio.model.ClassifyDataBean
 import kotlinx.android.synthetic.main.fragment_main.*
-
 /**
  * @Author: WilliamLu
  * @Date: 2018/11/20

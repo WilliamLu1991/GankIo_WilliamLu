@@ -42,7 +42,7 @@
         <item name="android:layout_marginTop">@dimen/dp_25</item>
         <item name="android:layout_marginRight">@dimen/dp_20</item>
         <item name="android:layout_marginBottom">@dimen/dp_10</item>
-        <item name="android:background">@drawable/shape_bg_ff2929_r4</item>
+        <item name="android:background">@drawable/shape_bg_fe7e3f_r4</item>
         <item name="android:textColor">@color/color_ffffff</item>
         <item name="android:textSize">@dimen/sp_16</item>
     </style>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_ffffff"
+    android:orientation="vertical"
+    tools:context=".login.view.ConfirmPhoneActivity">
+
+    <include layout="@layout/layout_toolbar" />
+
+    <include layout="@layout/view_horizontal_line" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_notice_bg"
+        android:gravity="center_vertical"
+        android:minHeight="@dimen/dp_25"
+        android:paddingLeft="@dimen/dp_20"
+        android:text="为了您的账号安全，请验证手机"
+        android:textColor="@color/color_666258"
+        android:textSize="@dimen/sp_11" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/confirmphone_et_phone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginLeft="@dimen/dp_20"
+            android:layout_marginTop="@dimen/dp_15"
+            android:layout_marginRight="@dimen/dp_20"
+            android:background="@drawable/shape_bg_f7f7f7_r4"
+            android:ellipsize="end"
+            android:hint="请输入11位手机号"
+            android:inputType="phone"
+            android:maxLength="11"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:singleLine="true"
+            android:text=""
+            android:textColor="@color/color_333333"
+            android:textColorHint="@color/color_cccccc"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:id="@+id/confirmphone_ll_phone_code"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:layout_marginTop="@dimen/dp_15"
+            android:orientation="horizontal"
+            android:visibility="visible">
+
+            <EditText
+                android:id="@+id/confirmphone_et_code"
+                android:layout_weight="1"
+                style="@style/CommonVerificationCodeTextStyle" />
+
+            <Button
+                android:id="@+id/confirmphone_bt_getcode"
+                android:layout_width="@dimen/dp_105"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_20"
+                android:background="@drawable/shape_bg_ffffff_s_ff2929_r4"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/color_ff2929"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/confirmphone_bt_go"
+            style="@style/CommonButtonStyle"
+            android:text="确定" />
+
+    </LinearLayout>
+</LinearLayout>
