@@ -7,54 +7,58 @@
     android:layout_height="match_parent"
     tools:context=".main.view.MainActivity">
 
-    <android.support.design.widget.CoordinatorLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mSwipeRl"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/main_appbarlayout"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent">
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/main_collapsingtoolbarlayout"
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/main_appbarlayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:contentScrim="@color/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+                android:layout_height="wrap_content">
 
-                <include layout="@layout/layout_banner_card" />
+                <android.support.design.widget.CollapsingToolbarLayout
+                    android:id="@+id/main_collapsingtoolbarlayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:contentScrim="@color/colorPrimary"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-                <include layout="@layout/layout_toolbar" />
+                    <include layout="@layout/layout_banner_card" />
 
-            </android.support.design.widget.CollapsingToolbarLayout>
+                    <include layout="@layout/layout_toolbar" />
 
-            <include layout="@layout/view_horizontal_line" />
+                </android.support.design.widget.CollapsingToolbarLayout>
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/main_tablayout"
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/main_tablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/color_ffffff"
+                    app:tabIndicatorColor="@color/colorPrimary"
+                    app:tabMode="fixed"
+                    app:tabSelectedTextColor="@color/colorPrimary"
+                    app:tabTextAppearance="@style/TabTextStyle"
+                    app:tabTextColor="@color/color_999999" />
+
+            </android.support.design.widget.AppBarLayout>
+
+
+            <android.support.v4.view.ViewPager
+                android:id="@+id/main_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_40"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/color_ffffff"
-                app:tabIndicatorColor="@color/colorPrimary"
-                app:tabMode="fixed"
-                app:tabSelectedTextColor="@color/colorPrimary"
-                app:tabTextAppearance="@style/TabTextStyle"
-                app:tabTextColor="@color/color_999999" />
-
-        </android.support.design.widget.AppBarLayout>
+                android:layout_height="match_parent"
+                app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior" />
 
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/main_viewpager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="android.support.design.widget.AppBarLayout$ScrollingViewBehavior" />
+        </android.support.design.widget.CoordinatorLayout>
 
-
-    </android.support.design.widget.CoordinatorLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <include layout="@layout/view_mine" />
-
 </android.support.v4.widget.DrawerLayout>

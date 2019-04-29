@@ -73,7 +73,7 @@ class AndroidFragment : GankIoBaseFragment(), MainContract.View {
 
     override fun initListener() {
 
-        mSwipeRl.setOnRefreshListener {
+        /*mSwipeRl.setOnRefreshListener {
             if (mAndroidAdapter != null) {
                 mAndroidAdapter!!.setEnableLoadMore(false)
             }
@@ -81,7 +81,7 @@ class AndroidFragment : GankIoBaseFragment(), MainContract.View {
             showLoadingView()
             mPageIndex = 1
             mMainPresenter!!.getClassifyData("Android", mPageIndex.toString())
-        }
+        }*/
     }
 
 }

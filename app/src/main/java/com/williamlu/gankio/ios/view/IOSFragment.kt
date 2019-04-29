@@ -72,7 +72,7 @@ class IOSFragment : GankIoBaseFragment(), MainContract.View {
 
     override fun initListener() {
 
-        mSwipeRl.setOnRefreshListener {
+        /*mSwipeRl.setOnRefreshListener {
             if (mIOSListAdapter != null) {
                 mIOSListAdapter!!.setEnableLoadMore(false)
             }
@@ -80,7 +80,7 @@ class IOSFragment : GankIoBaseFragment(), MainContract.View {
             showLoadingView()
             mPageIndex = 1
             mMainPresenter!!.getClassifyData("iOS", mPageIndex.toString())
-        }
+        }*/
     }
 
 }

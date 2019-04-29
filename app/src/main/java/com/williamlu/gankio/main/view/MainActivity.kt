@@ -34,7 +34,6 @@ import org.greenrobot.eventbus.EventBus
 class MainActivity : GankIoBaseActivity(), MainContract.View {
     private var mMainPresenter: MainPresenter? = null
     private var mBannerAdapter: BannerAdapter? = null
-    private var mBannerCardIndicator: BannerIndicator? = null
     private var mPageIndex: Int = 1
 
     override fun getContentViewLayoutID(): Int {
@@ -55,10 +54,10 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
     }
 
     override fun initView() {
-        mBaseToolBarHelper!!.setTitleName(resources.getString(R.string.app_name)).showLeftView()
-            .setBgImg(R.drawable.lib_ic_personal)
+        mBaseToolBarHelper!!.setTitleName(resources.getString(R.string.app_name)).showLeftView().setBgImg(R.drawable.lib_ic_personal)
         mPageIndex = 1
         mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())
+        mSwipeRl.setProgressViewEndTarget(false, resources.getDimensionPixelSize(R.dimen.dp_85))
 
         main_viewpager.adapter = MainTabAdapter(this, supportFragmentManager)
         main_tablayout.setupWithViewPager(main_viewpager)
@@ -66,6 +65,10 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
     }
 
     override fun initListener() {
+        mSwipeRl.setOnRefreshListener {
+            dismissSwipeRl()
+        }
+
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
             if (main_dl.isDrawerOpen(Gravity.LEFT)) {
                 main_dl.closeDrawer(Gravity.LEFT)
@@ -76,6 +79,14 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
 
         mine_bt_login.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        main_appbarlayout.addOnOffsetChangedListener { appBarLayout, verticalOffset ->
+            if (verticalOffset == 0) {
+                mSwipeRl.isEnabled = true
+            } else {
+                mSwipeRl.isEnabled = false
+            }
         }
     }
 
@@ -90,10 +101,10 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
         }
         if (mBannerAdapter == null) {
             mBannerAdapter = BannerHelper().bannerInit(
-                this,
-                imageList,
-                banner_card_rv!!,
-                banner_card_indicator!!
+                    this,
+                    imageList,
+                    banner_card_rv!!,
+                    banner_card_indicator!!
             )
         } else {
             mBannerAdapter!!.setNewData(imageList)
@@ -106,10 +117,10 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
                 val view = View.inflate(this@MainActivity, R.layout.view_big_image, null)
 
                 Glide.with(this@MainActivity)
-                    .load(subList[position].url)
-                    .placeholder(R.drawable.lib_ic_logo)
-                    .error(R.drawable.lib_ic_logo)
-                    .into(view.findViewById<ImageView>(R.id.viewimage_iv_img))
+                        .load(subList[position].url)
+                        .placeholder(R.drawable.lib_ic_logo)
+                        .error(R.drawable.lib_ic_logo)
+                        .into(view.findViewById<ImageView>(R.id.viewimage_iv_img))
 
                 fullSheetDialog.setContentView(view)
                 fullSheetDialog.show()
@@ -125,14 +136,14 @@ class MainActivity : GankIoBaseActivity(), MainContract.View {
         if (keyCode == KeyEvent.KEYCODE_BACK && event.action == KeyEvent.ACTION_DOWN) {
 
             CustomAlertDialog.getInstance()
-                .createAlertDialog(this, "确定要退出应用吗", "再看看", "狠心退出", true, false,
-                    object : CustomAlertDialog.OnDialogSelectListener {
-                        override fun onRightSelect() {
-                            ToastUtils.dismissToast()
-                            EventBus.getDefault().post(ExitAppEvent(this@MainActivity))
-                        }
+                    .createAlertDialog(this, "确定要退出应用吗", "再看看", "狠心退出", true, false,
+                            object : CustomAlertDialog.OnDialogSelectListener {
+                                override fun onRightSelect() {
+                                    ToastUtils.dismissToast()
+                                    EventBus.getDefault().post(ExitAppEvent(this@MainActivity))
+                                }
 
-                    })
+                            })
 
             return true
         }

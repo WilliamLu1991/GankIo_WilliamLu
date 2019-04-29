@@ -86,8 +86,8 @@ abstract class BaseFragment : Fragment(), BaseLoadView {
         return rootView
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         if (isFirst) {
             setContentView(rootView)
             initPresenter()

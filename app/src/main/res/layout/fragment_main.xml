@@ -7,23 +7,17 @@
     android:orientation="vertical"
     tools:context=".main.view.WelfareFragment">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/mSwipeRl"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <FrameLayout
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/fragment_main_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/fragment_main_rv"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+        <include layout="@layout/layout_empty_loading" />
 
-            <include layout="@layout/layout_empty_loading" />
-
-        </FrameLayout>
-    </android.support.v4.widget.SwipeRefreshLayout>
+    </FrameLayout>
 
 </LinearLayout>

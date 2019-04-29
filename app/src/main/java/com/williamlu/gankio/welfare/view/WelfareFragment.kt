@@ -73,7 +73,7 @@ class WelfareFragment : GankIoBaseFragment(), MainContract.View {
 
     override fun initListener() {
 
-        mSwipeRl.setOnRefreshListener {
+       /* mSwipeRl.setOnRefreshListener {
             if (mWelfareAdapter != null) {
                 mWelfareAdapter!!.setEnableLoadMore(false)
             }
@@ -81,7 +81,7 @@ class WelfareFragment : GankIoBaseFragment(), MainContract.View {
             showLoadingView()
             mPageIndex = 1
             mMainPresenter!!.getClassifyData("福利", mPageIndex.toString())
-        }
+        }*/
     }
 
 }
