@@ -6,7 +6,6 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
-import com.umeng.socialize.utils.DeviceConfig.context
 import com.williamlu.gankio.R
 import com.williamlu.gankio.base.GankIoBaseActivity
 import com.williamlu.gankio.event.ExitAppEvent
@@ -20,11 +19,11 @@ import com.williamlu.widgetlib.CustomAlertDialog
 import com.williamlu.widgetlib.FullSheetDialog
 import com.williamlu.widgetlib.banner_card.BannerAdapter
 import com.williamlu.widgetlib.banner_card.BannerHelper
-import com.williamlu.widgetlib.banner_card.BannerIndicator
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.layout_banner_card.*
 import kotlinx.android.synthetic.main.view_mine.*
 import org.greenrobot.eventbus.EventBus
+
 
 /**
  * @Author: WilliamLu
