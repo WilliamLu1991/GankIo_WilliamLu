@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.view.KeyEvent
 import android.webkit.*
 import com.williamlu.gankio.R
 import kotlinx.android.synthetic.main.activity_base_web_view.*
@@ -73,7 +74,11 @@ class BaseWebViewActivity : GankIoBaseActivity() {
 
     override fun initListener() {
         mBaseToolBarHelper!!.getLeftView().setOnClickListener {
-            finish()
+            if (base_webview.canGoBack()) {
+                base_webview.goBack()
+            } else {
+                finish()
+            }
         }
 
         mLayoutEmptyLoading!!.setOnClickListener {
@@ -83,6 +88,14 @@ class BaseWebViewActivity : GankIoBaseActivity() {
             initView()
         }
 
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK && base_webview.canGoBack()) {
+            base_webview.goBack()//返回上个页面
+            return true
+        }
+        return super.onKeyDown(keyCode, event)//退出H5界面
     }
 
 }

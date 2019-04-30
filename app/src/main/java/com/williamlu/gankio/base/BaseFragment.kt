@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide
 import com.williamlu.datalib.bean.ApiExceptionEvent
 import com.williamlu.datalib.bean.ServerExceptionEvent
 import com.williamlu.gankio.AppConstant
-import com.williamlu.gankio.R
 import com.williamlu.toolslib.SpUtils
 import com.williamlu.toolslib.ToastUtils
 import com.williamlu.widgetlib.BaseToolBarHelper
@@ -24,6 +23,7 @@ import io.reactivex.disposables.Disposable
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+
 
 /**
  * @Author: WilliamLu
@@ -45,6 +45,7 @@ abstract class BaseFragment : Fragment(), BaseLoadView {
     private var mCompositeDisposable: CompositeDisposable? = null
     protected var mActivity: BaseActivity? = null
     private var isFirst = true
+    private var isVisibleF = false
 
     /**
      * 获取布局ID
@@ -97,18 +98,18 @@ abstract class BaseFragment : Fragment(), BaseLoadView {
     }
 
     fun setContentView(v: View?) {
-        mLayoutEmptyLoading = v!!.findViewById<RelativeLayout>(R.id.layout_empty_loading)
-        mLayoutLlEmptyData = v.findViewById<LinearLayout>(R.id.layout_ll_empty_data)
-        mLayoutLlLoading = v.findViewById<LinearLayout>(R.id.layout_ll_loading)
-        mLayoutIvLoading = v.findViewById<ImageView>(R.id.layout_iv_loading)
-        mLayoutLlError = v.findViewById<LinearLayout>(R.id.layout_ll_error)
-        mBaseToolbar = v.findViewById<Toolbar>(R.id.base_toolbar)
+        mLayoutEmptyLoading = v!!.findViewById<RelativeLayout>(com.williamlu.gankio.R.id.layout_empty_loading)
+        mLayoutLlEmptyData = v.findViewById<LinearLayout>(com.williamlu.gankio.R.id.layout_ll_empty_data)
+        mLayoutLlLoading = v.findViewById<LinearLayout>(com.williamlu.gankio.R.id.layout_ll_loading)
+        mLayoutIvLoading = v.findViewById<ImageView>(com.williamlu.gankio.R.id.layout_iv_loading)
+        mLayoutLlError = v.findViewById<LinearLayout>(com.williamlu.gankio.R.id.layout_ll_error)
+        mBaseToolbar = v.findViewById<Toolbar>(com.williamlu.gankio.R.id.base_toolbar)
         if (mBaseToolbar != null) {
             mBaseToolBarHelper = BaseToolBarHelper(mBaseToolbar!!)
         }
-        mSwipeRl = v.findViewById<SwipeRefreshLayout>(R.id.mSwipeRl)
+        mSwipeRl = v.findViewById<SwipeRefreshLayout>(com.williamlu.gankio.R.id.mSwipeRl)
         if (mSwipeRl != null) {
-            mSwipeRl!!.setColorSchemeResources(R.color.colorPrimary)
+            mSwipeRl!!.setColorSchemeResources(com.williamlu.gankio.R.color.colorPrimary)
         }
     }
 
@@ -169,7 +170,7 @@ abstract class BaseFragment : Fragment(), BaseLoadView {
 
     override fun showLoadingView() {
         if (mLayoutEmptyLoading != null) {
-            Glide.with(this).load(R.drawable.lib_gif_loading).into(mLayoutIvLoading!!)
+            Glide.with(this).load(com.williamlu.gankio.R.drawable.lib_gif_loading).into(mLayoutIvLoading!!)
             mLayoutEmptyLoading!!.visibility = View.VISIBLE
             mLayoutLlLoading!!.visibility = View.VISIBLE
             mLayoutLlEmptyData!!.visibility = View.GONE
